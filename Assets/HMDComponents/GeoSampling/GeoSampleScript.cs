@@ -60,19 +60,19 @@ public class GeoSampleScript : MonoBehaviour
                 }
                 //geoText = $"eva1\n{}";
             }
-            if (id2 != 0)
-            {
-                text += "Eva2\n";
-                text += $"ID: {id2}\n";
-
-
-                foreach (var pair in jo["spec"]["eva2"]["data"].ToObject<JObject>())
-                {
-                    text += $"{pair.Key}: {pair.Value}\n";
-                    //Debug.Log(pair.Key);
-                }
-                //geoText = $"eva1\n{}";
-            }
+            // if (id2 != 0)
+            // {
+            //     text += "Eva2\n";
+            //     text += $"ID: {id2}\n";
+            // 
+            // 
+            //     foreach (var pair in jo["spec"]["eva2"]["data"].ToObject<JObject>())
+            //     {
+            //         text += $"{pair.Key}: {pair.Value}\n";
+            //         //Debug.Log(pair.Key);
+            //     }
+            //     //geoText = $"eva1\n{}";
+            // }
             geoText.text = text;
         }
     }
