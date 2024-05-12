@@ -19,6 +19,7 @@ public class GeoSampleScript : MonoBehaviour
     void Update()
     {
         GatewayConnection conn = connectionHandler.GetConnection();
+        
         if (conn != null && conn.isSPECUpdated())
         {
             string spec = conn.GetSPECJsonString();
@@ -30,8 +31,27 @@ public class GeoSampleScript : MonoBehaviour
             if (id1 != 0)
             {
                 text += "Eva1\n";
-                text += $"id: {id1}\n";
+                text += $"ID: {id1}\n";
 
+                if (jo != null && jo["spec"] != null && jo["spec"]["eva1"] != null && 
+                    (jo["spec"]["eva1"]["data"]["Al2O3"].ToObject<float>() > 10 ||
+                    jo["spec"]["eva1"]["data"]["SiO2"].ToObject<float>() < 10 ||
+                    jo["spec"]["eva1"]["data"]["TiO2"].ToObject<float>() > 1 ||
+                    jo["spec"]["eva1"]["data"]["FeO"].ToObject<float>() > 29 ||
+                    jo["spec"]["eva1"]["data"]["MnO"].ToObject<float>() > 1 ||
+                    jo["spec"]["eva1"]["data"]["MgO"].ToObject<float>() > 20 ||
+                    jo["spec"]["eva1"]["data"]["CaO"].ToObject<float>() > 10 ||
+                    jo["spec"]["eva1"]["data"]["K2O"].ToObject<float>() > 1 ||
+                    jo["spec"]["eva1"]["data"]["P2O5"].ToObject<float>() > 1.5 ||
+                    jo["spec"]["eva1"]["data"]["other"].ToObject<float>() > 50))
+                {
+                    text += "Sample Significant\n";
+                    geoText.color = Color.green;
+                } else
+                {
+                    text += "Sample insignificant\n";
+                    geoText.color = Color.white;
+                }
 
                 foreach (var pair in jo["spec"]["eva1"]["data"].ToObject<JObject>())
                 {
@@ -43,7 +63,7 @@ public class GeoSampleScript : MonoBehaviour
             if (id2 != 0)
             {
                 text += "Eva2\n";
-                text += $"id: {id2}\n";
+                text += $"ID: {id2}\n";
 
 
                 foreach (var pair in jo["spec"]["eva2"]["data"].ToObject<JObject>())
