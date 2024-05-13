@@ -10879,7 +10879,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: critter
+  m_text: No Data to Display
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 68fa23d3d61d5b343b4590c111ca79d2, type: 2}
   m_sharedMaterial: {fileID: 3609987155514583290, guid: 68fa23d3d61d5b343b4590c111ca79d2, type: 2}
