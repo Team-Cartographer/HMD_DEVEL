@@ -38,7 +38,7 @@ public class GeoSampleScript : MonoBehaviour
                     geoText.gameObject.SetActive(true);
                     text += "SAMPLE SCANNED\n";
                     text += "You may proceed\nto the next scan.\n";
-                    text += "Sample contents:\n";
+                    
                     // text += $"ID: {id1}\n";
 
                     if (jo != null && jo["spec"] != null && jo["spec"]["eva1"] != null && jo["spec"]["eva1"]["data"] != null &&
@@ -61,6 +61,8 @@ public class GeoSampleScript : MonoBehaviour
                         text += "Sample insignificant\n";
                         geoText.color = Color.white;
                     }
+
+                    text += "Sample contents:\n";
 
                     foreach (var pair in jo["spec"]["eva1"]["data"].ToObject<JObject>())
                     {

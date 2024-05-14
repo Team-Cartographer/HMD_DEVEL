@@ -70,7 +70,7 @@ public class CriticalTelemetry : MonoBehaviour
 
     void UpdateBatteryLife(JObject jo)
     {
-        battLife.text = "Remaining Battery Life: ";
+        battLife.text = "Remaining Battery Time: ";
         float batlife = jo["telemetry"]["eva1"]["batt_time_left"].ToObject<float>();
 
         battLife.color = batlife < 3600 ? Color.red : Color.green;
