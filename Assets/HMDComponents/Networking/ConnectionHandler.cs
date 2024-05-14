@@ -7,9 +7,10 @@ public class ConnectionHandler : MonoBehaviour
 {
     // Start is called before the first frame update
     public GatewayConnection GatewayConnection;
+
     void Start()
-    { 
-        if (PlayerPrefs.GetString("CurrentIP") == null) PlayerPrefs.SetString("CurrentIP", "0.0.0.0");
+    {
+        if (PlayerPrefs.GetString("CurrentIP") == null) PlayerPrefs.SetString("CurrentIP", "172.31.233.148");
         GatewayConnection.ConnectToHost(PlayerPrefs.GetString("CurrentIP"), 3001);
     }
 

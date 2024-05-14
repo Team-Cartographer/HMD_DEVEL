@@ -113,6 +113,7 @@ public class GatewayConnection : MonoBehaviour
     private IEnumerator GetTODOState() { yield return GetState("TODO", "/todo"); }
     private IEnumerator GetWARNINGState() { yield return GetState("WARNING", "/warning"); }
     private IEnumerator GetGEOJSONState() { yield return GetState("GEOJSON", "/geojson"); }
+
     #endregion
 
     private IEnumerator GetState(string stateName, string endpoint)
@@ -133,7 +134,7 @@ public class GatewayConnection : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(updateInterval); 
+        yield return new WaitForSeconds(updateInterval);
     }
 
     public string GetJsonString(string stateName)
@@ -185,7 +186,7 @@ public class GatewayConnection : MonoBehaviour
 
     public string GetERRORJsonString()
     {
-        return this.GetJsonString("ERROR"); 
+        return this.GetJsonString("ERROR");
     }
 
     public string GetROCKDATAJsonString()
@@ -205,12 +206,12 @@ public class GatewayConnection : MonoBehaviour
 
     public string GetTODOITEMSJsonString()
     {
-        return this.GetJsonString("TODO"); 
+        return this.GetJsonString("TODO");
     }
 
     public string GetWARNINGJsonString()
     {
-        return this.GetJsonString("WARNING"); 
+        return this.GetJsonString("WARNING");
     }
 
     public string GetGEOJSONJsonString()
