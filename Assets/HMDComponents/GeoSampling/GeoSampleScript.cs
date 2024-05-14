@@ -37,7 +37,9 @@ public class GeoSampleScript : MonoBehaviour
 
                     geoText.gameObject.SetActive(true);
                     text += "SAMPLE SCANNED\n";
-                    text += $"ID: {id1}\n";
+                    text += "You may proceed\nto the next scan.\n";
+                    text += "Sample contents:\n";
+                    // text += $"ID: {id1}\n";
 
                     if (jo != null && jo["spec"] != null && jo["spec"]["eva1"] != null && jo["spec"]["eva1"]["data"] != null &&
                         (jo["spec"]["eva1"]["data"]["Al2O3"] != null && jo["spec"]["eva1"]["data"]["Al2O3"].ToObject<float>() > 10 ||
