@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: CartographerHMD
+  companyName: Team Cartographer
+  productName: PolarisEVASystemV0.2
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -136,8 +136,12 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
-  bundleVersion: 0.1
-  preloadedAssets: []
+  bundleVersion: 0.22
+  preloadedAssets:
+  - {fileID: 11400000, guid: c677e5c4eb85b7849a8da406775c299d, type: 2}
+  - {fileID: -8143840358457592458, guid: 29c4f70f7d29cb2449f5eeaee2631c9d, type: 2}
+  - {fileID: 11400000, guid: af4276845c4c9494f8edc94ab3671b15, type: 2}
+  - {fileID: -6123378161786412364, guid: 2c5c45fa9d08ff84f9f5ff96875f6276, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -769,14 +773,14 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: CartographerHMD
+  metroPackageName: PolarisEVASystemV0.2
   metroPackageVersion: 1.0.0.0
   metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
   metroCertificateIssuer: DefaultCompany
   metroCertificateNotAfter: 00a56799a6c1db01
-  metroApplicationDescription: CartographerHMD
+  metroApplicationDescription: SUITS 2024
   wsaImages: {}
   metroTileShortName: CartographerHMD
   metroTileShowName: 0
@@ -792,9 +796,24 @@ PlayerSettings:
   metroSplashScreenUseBackgroundColor: 0
   platformCapabilities:
     WindowsStoreApps:
-      GazeInput: True
-      SpatialPerception: True
+      Location: True
+      Chat: True
+      Bluetooth: True
+      Proximity: True
+      PrivateNetworkClientServer: True
+      LowLevelDevices: True
+      InternetClientServer: True
       WebCam: True
+      VoipCall: False
+      GazeInput: True
+      RemoteSystem: True
+      UserAccountInformation: False
+      PhoneCall: False
+      SystemManagement: True
+      SpatialPerception: True
+      InternetClient: True
+      CodeGeneration: True
+      BackgroundMediaPlayback: True
       Microphone: True
   metroTargetDeviceFamilies: {}
   metroFTAName: 
