@@ -4,11 +4,13 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Newtonsoft.Json.Linq;
+using Microsoft.MixedReality.GraphicsTools;
 
 
 
 public class WarningSystemScript : MonoBehaviour
 {
+    public TMP_Text noTasksWarningsText;
     public TMP_Text warningText;
     public TMP_Text warningDetailsText;
     public TMP_Text messageText;
@@ -26,6 +28,11 @@ public class WarningSystemScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // show or hide background
+        if (messageText.gameObject.activeSelf || warningText.gameObject.activeSelf) noTasksWarningsText.gameObject.SetActive(false);
+        else noTasksWarningsText.gameObject.SetActive(true);
+
+
         GatewayConnection conn = connection.GetConnection();
 
         /// CHECK/UPDATE TODOLIST 
@@ -49,10 +56,12 @@ public class WarningSystemScript : MonoBehaviour
             if (newTodoList == "<indent=5%>")
             {
                 messageText.gameObject.SetActive(false);
+                messageDetailsText.gameObject.SetActive(false);
             }
             else
             {
                 messageText.gameObject.SetActive(true);
+                messageDetailsText.gameObject.SetActive(true);
             }
         }
 
@@ -83,5 +92,4 @@ public class WarningSystemScript : MonoBehaviour
         warningDetailsText.gameObject.SetActive(false);
         warningVignette.gameObject.SetActive(false);
     }
-
 }
