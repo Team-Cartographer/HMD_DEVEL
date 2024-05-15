@@ -14,13 +14,13 @@ public class HMDPinsSync : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void SetGatewayConnection(GatewayConnection connection) { gatewayConnection = connection; }
@@ -42,16 +42,19 @@ public class HMDPinsSync : MonoBehaviour
     {
         var data = new
         {
-            type = "Feature",
-            properties = new
+            feature = new
             {
-                name = "HMD_Pin",
-                description = coords[0] + "x" + coords[1]
-            },
-            geometry = new
-            {
-                type = "Point",
-                coordinates = new int[][] { coords }
+                type = "Feature",
+                properties = new
+                {
+                    name = "",
+                    description = coords[0] + "x" + coords[1]
+                },
+                geometry = new
+                {
+                    type = "Point",
+                    coordinates = new int[][] { new int[] { coords[0], coords[1] } }
+                }
             }
         };
         string jsonData = JsonConvert.SerializeObject(data);
@@ -61,14 +64,14 @@ public class HMDPinsSync : MonoBehaviour
 
         Debug.Log("Checking POST JSON:" + jsonData);
 
-        UnityWebRequest request = new UnityWebRequest("http://192.168.1.18:3001/addfeature", "POST");
+        UnityWebRequest request = new UnityWebRequest("http://192.168.4.36:3001/addfeature", "POST");
         request.SetRequestHeader("Content-Type", "application/json");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
         request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
         yield return request.SendWebRequest();
 
-        
+
         if (request.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Error: " + request.error);
