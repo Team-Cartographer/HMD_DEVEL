@@ -14,6 +14,7 @@ public class LMCCPinsController : MonoBehaviour
 {
     [SerializeField] ConnectionHandler connectionHandler;
     GatewayConnection gatewayConnection;
+    HMDPinsSync hmdPinsSync;
 
     [SerializeField] GameObject worldPin;
 
@@ -31,6 +32,9 @@ public class LMCCPinsController : MonoBehaviour
     void Start()
     {
         gatewayConnection = connectionHandler.GetConnection();
+        hmdPinsSync = GetComponent<HMDPinsSync>();
+        hmdPinsSync.SetGatewayConnection(gatewayConnection);
+        hmdPinsSync.SetMapCenter(mapCenterUTM15);
     }
 
     // Update is called once per frame
@@ -39,6 +43,7 @@ public class LMCCPinsController : MonoBehaviour
         if (gatewayConnection != null && gatewayConnection.isGEOJSONUpdated())
         {
             UpdateLMCCPins(gatewayConnection.GetGEOJSONJsonString());
+            //Debug.Log(gatewayConnection.GetGEOJSONJsonString());
             UpdatePinsOnField();
         }
     }
