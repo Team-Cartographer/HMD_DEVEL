@@ -14,6 +14,8 @@ public class CriticalTelemetry : MonoBehaviour
 
     public ConnectionHandler connection;
 
+    bool updatingTelemetry = false;
+    [SerializeField] float apiCallTimeInterval = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,7 @@ public class CriticalTelemetry : MonoBehaviour
         bpmText.gameObject.SetActive(true);
         battLife.gameObject.SetActive(true);
         oxyTime.gameObject.SetActive(true);
+        updatingTelemetry = false;
     }
 
     void Update()
@@ -38,25 +41,34 @@ public class CriticalTelemetry : MonoBehaviour
             return;
         }
 
+        if (!updatingTelemetry) StartCoroutine(AttemptTelemetryUpdate(conn));
+    }
+
+    IEnumerator AttemptTelemetryUpdate(GatewayConnection conn)
+    {
+        updatingTelemetry = true;
         string telem = conn.GetTELEMETRYJsonString();
         if (string.IsNullOrEmpty(telem))
         {
             Debug.LogError("Telemetry data is empty or null.");
-            return;
         }
-
-        try
+        else 
         {
-            JObject jo = JObject.Parse(telem);
+            try
+            {
+                JObject jo = JObject.Parse(telem);
 
-            UpdateBPM(jo);
-            UpdateBatteryLife(jo);
-            UpdateOxygenTime(jo);
+                UpdateBPM(jo);
+                UpdateBatteryLife(jo);
+                UpdateOxygenTime(jo);
+            }
+            catch (JsonReaderException ex)
+            {
+                Debug.LogError($"Failed to parse JSON: {ex.Message}. Data: {telem}");
+            }
         }
-        catch (JsonReaderException ex)
-        {
-            Debug.LogError($"Failed to parse JSON: {ex.Message}. Data: {telem}");
-        }
+        yield return new WaitForSecondsRealtime(apiCallTimeInterval);
+        updatingTelemetry = false;
     }
 
     void UpdateBPM(JObject jo)

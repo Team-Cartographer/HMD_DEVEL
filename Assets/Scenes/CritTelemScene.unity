@@ -5358,7 +5358,6 @@ GameObject:
   - component: {fileID: 871901150}
   - component: {fileID: 871901149}
   - component: {fileID: 871901147}
-  - component: {fileID: 871901148}
   m_Layer: 0
   m_Name: OxyLife
   m_TagString: Untagged
@@ -5455,22 +5454,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &871901148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 871901146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea95a2f686802414496d45a9385ad3c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bpmText: {fileID: 1818093691}
-  battLife: {fileID: 1778607829}
-  oxyTime: {fileID: 871901147}
-  connection: {fileID: 1183467018}
 --- !u!222 &871901149
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6272,7 +6255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 926579930}
-  - component: {fileID: 926579929}
+  - component: {fileID: 926579931}
   m_Layer: 0
   m_Name: CriticalTelemetry
   m_TagString: Untagged
@@ -6280,24 +6263,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &926579929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 926579928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d54e1d6df62cf945bb93da8d8d93eb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  warningText: {fileID: 0}
-  warningDetailsText: {fileID: 1818093691}
-  messageText: {fileID: 0}
-  messageDetailsText: {fileID: 1778607829}
-  warningVignette: {fileID: 0}
-  connection: {fileID: 1183467018}
 --- !u!4 &926579930
 Transform:
   m_ObjectHideFlags: 0
@@ -6314,6 +6279,23 @@ Transform:
   - {fileID: 149259673}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &926579931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926579928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea95a2f686802414496d45a9385ad3c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bpmText: {fileID: 1818093691}
+  battLife: {fileID: 1778607829}
+  oxyTime: {fileID: 871901147}
+  connection: {fileID: 1183467018}
+  apiCallTimeInterval: 0.1
 --- !u!1 &936134869 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3705378105823492738, guid: b85e005d231192249b7077b40a4d4e45, type: 3}
@@ -7731,7 +7713,7 @@ RectTransform:
   m_GameObject: {fileID: 1257562071}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.00029999999, y: 0.00029999999, z: 0.00029999999}
+  m_LocalScale: {x: 0.0005, y: 0.0005, z: 0.0005}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 824101911}
@@ -7756,7 +7738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 0}
-  m_TargetOffset: {x: 0, y: -0.019, z: 0.5}
+  m_TargetOffset: {x: 0, y: -0.019, z: 0.8}
   m_FollowInLocalSpace: 0
   m_ApplyTargetInLocalSpace: 0
   m_MovementSpeed: 10000
@@ -9744,7 +9726,6 @@ GameObject:
   - component: {fileID: 1778607832}
   - component: {fileID: 1778607831}
   - component: {fileID: 1778607829}
-  - component: {fileID: 1778607830}
   m_Layer: 0
   m_Name: BattLife
   m_TagString: Untagged
@@ -9841,22 +9822,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1778607830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1778607828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea95a2f686802414496d45a9385ad3c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bpmText: {fileID: 1818093691}
-  battLife: {fileID: 1778607829}
-  oxyTime: {fileID: 871901147}
-  connection: {fileID: 1183467018}
 --- !u!222 &1778607831
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9972,7 +9937,6 @@ GameObject:
   - component: {fileID: 1818093688}
   - component: {fileID: 1818093690}
   - component: {fileID: 1818093691}
-  - component: {fileID: 1818093689}
   m_Layer: 0
   m_Name: BPM
   m_TagString: Untagged
@@ -9999,22 +9963,6 @@ RectTransform:
   m_AnchoredPosition: {x: 248, y: -207}
   m_SizeDelta: {x: 47.5, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1818093689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1818093687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea95a2f686802414496d45a9385ad3c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bpmText: {fileID: 1818093691}
-  battLife: {fileID: 1778607829}
-  oxyTime: {fileID: 871901147}
-  connection: {fileID: 1183467018}
 --- !u!222 &1818093690
 CanvasRenderer:
   m_ObjectHideFlags: 0
