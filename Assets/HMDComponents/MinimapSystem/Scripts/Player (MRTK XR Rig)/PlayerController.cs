@@ -40,6 +40,6 @@ public class PlayerController : MonoBehaviour
                 Quaternion.identity);
         allPins.Add(newPin);*/
 
-        FindAnyObjectByType<HMDPinsSync>().AddHMDPin(transform.position);
+        FindAnyObjectByType<HMDPinsSync>().AddHMDPin(Camera.main.transform.position);
     }
 }

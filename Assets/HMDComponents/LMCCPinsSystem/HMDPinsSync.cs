@@ -33,8 +33,8 @@ public class HMDPinsSync : MonoBehaviour
 
     int[] ConvertUnityToUTMCoords(Vector3 position)
     {
-        int xPos = (int)position.x + mapCenter[0];
-        int yPos = (int)position.z + mapCenter[1];
+        int xPos = mapCenter[0] + (int)position.x;
+        int yPos = mapCenter[1] - (int)position.z;
         return new int[] { xPos, yPos };
     }
 
