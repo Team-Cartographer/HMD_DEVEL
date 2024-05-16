@@ -21,6 +21,7 @@ public class FollowPlayerTransform : MonoBehaviour // may delete this script
     [SerializeField] bool ignoreX = false;
     [SerializeField] bool ignoreY = false;
     [SerializeField] bool ignoreZ = false;
+    [SerializeField] bool rotateWithPlayer = false;
     int xIgnore;
     int yIgnore;
     int zIgnore;
@@ -45,5 +46,7 @@ public class FollowPlayerTransform : MonoBehaviour // may delete this script
 
         transform.position = new Vector3(playerPosition.x * xIgnore, playerPosition.y * yIgnore - cameraYOffset, 
             playerPosition.z * zIgnore) + initialPosition;
+
+        if (rotateWithPlayer) transform.eulerAngles = new Vector3(transform.eulerAngles.x, playerCamera.transform.eulerAngles.y, transform.eulerAngles.z);
     }
 }
