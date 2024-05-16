@@ -15,7 +15,7 @@ public class TelemetryScript : MonoBehaviour
     public TMP_Text activeTime;
 
 
-    public ConnectionHandler connection;
+    public ConnectionHandler connectionHandler;
 
     public int time;
     public JObject eva1;
@@ -58,12 +58,12 @@ public class TelemetryScript : MonoBehaviour
     {
 
         // Networking
-        GatewayConnection conn = connection.GetConnection();
+        GatewayConnection gatewayConnection = connectionHandler.GetConnection();
 
-        if (conn != null && conn.isTELEMETRYUpdated())
+        if (gatewayConnection != null && gatewayConnection.isTELEMETRYUpdated())
         {
-            Debug.Log(conn.GetTELEMETRYJsonString());
-            JObject telemetryTotal = JObject.Parse(conn.GetTELEMETRYJsonString());
+            Debug.Log(gatewayConnection.GetTELEMETRYJsonString());
+            JObject telemetryTotal = JObject.Parse(gatewayConnection.GetTELEMETRYJsonString());
             JToken telemetry = telemetryTotal["telemetry"];
             time = telemetry["eva_time"].ToObject<int>();
 
