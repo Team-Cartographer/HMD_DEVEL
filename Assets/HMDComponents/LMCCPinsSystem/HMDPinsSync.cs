@@ -28,18 +28,7 @@ public class HMDPinsSync : MonoBehaviour
 
     public void AddHMDPin(Vector3 position)
     {
-        StartCoroutine(AddHMDPinCourotine(ConvertUnityToUTMCoords(position)));
-    }
-
-    int[] ConvertUnityToUTMCoords(Vector3 position)
-    {
-        int xPos = mapCenter[0] + (int)position.x;
-        int yPos = mapCenter[1] - (int)position.z;
-        return new int[] { xPos, yPos };
-    }
-
-    IEnumerator AddHMDPinCourotine(int[] coords)
-    {
+        int[] coords = ConvertUnityToUTMCoords(position);
         var data = new
         {
             feature = new
@@ -59,23 +48,38 @@ public class HMDPinsSync : MonoBehaviour
         };
         string jsonData = JsonConvert.SerializeObject(data);
 
-        Debug.Log("Checking POST JSON:" + jsonData);
+        StartCoroutine(gatewayConnection.PostRequest("addfeature", jsonData));
+    }
 
-        UnityWebRequest request = new UnityWebRequest("http://192.168.1.18:3001/addfeature", "POST");
-        request.SetRequestHeader("Content-Type", "application/json");
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
-        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-        yield return request.SendWebRequest();
-
-
-        if (request.result != UnityWebRequest.Result.Success)
+    public void RemovePin(Vector3 position)
+    {
+        int[] coords = ConvertUnityToUTMCoords(position);
+        var data = new
         {
-            Debug.LogError("Error: " + request.error);
-        }
-        else
-        {
-            Debug.Log("Response: " + request.downloadHandler.text);
-        }
+            feature = new
+            {
+                type = "Feature",
+                properties = new
+                {
+                    name = "",
+                    description = coords[0] + "x" + coords[1]
+                },
+                geometry = new
+                {
+                    type = "Point",
+                    coordinates = new int[][] { new int[] { coords[0], coords[1] } }
+                }
+            }
+        };
+        string jsonData = JsonConvert.SerializeObject(data);
+
+        StartCoroutine(gatewayConnection.PostRequest("removefeature", jsonData));
+    }
+
+    int[] ConvertUnityToUTMCoords(Vector3 position)
+    {
+        int xPos = mapCenter[0] + (int)position.x;
+        int yPos = mapCenter[1] - (int)position.z;
+        return new int[] { xPos, yPos };
     }
 }

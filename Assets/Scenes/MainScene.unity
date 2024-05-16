@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 83798217}
   - component: {fileID: 83798219}
   - component: {fileID: 83798218}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: RealScaleMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1531,7 +1531,7 @@ GameObject:
   - component: {fileID: 244850167}
   - component: {fileID: 244850166}
   - component: {fileID: 244850165}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: FieldMapCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2229,7 +2229,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 320
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 12ea29a7a8ece2a4792ed61de144f66f, type: 2}
   m_TargetDisplay: 0
@@ -2760,7 +2760,7 @@ GameObject:
   - component: {fileID: 392409601}
   - component: {fileID: 392409600}
   - component: {fileID: 392409599}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: PlayerWorldMapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2973,7 +2973,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 384
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: c724da123cf6c554481f16651d734790, type: 2}
   m_TargetDisplay: 0
@@ -8920,7 +8920,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectionHandler: {fileID: 1183467018}
-  worldPin: {fileID: 3627275342200852551, guid: fb56f31fb811b884fb827152d75dca8f, type: 3}
+  lmccWorldPin: {fileID: 3627275342200852551, guid: fb56f31fb811b884fb827152d75dca8f, type: 3}
+  hmdWorldPin: {fileID: 3627275342200852551, guid: 2c762c341dddfb74a9add3daf6d1d597, type: 3}
   lmccPins: []
   pinLatCoords: []
   pinLongCoords: []
@@ -9377,7 +9378,7 @@ GameObject:
   - component: {fileID: 1810577039}
   - component: {fileID: 1810577041}
   - component: {fileID: 1810577040}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: OriginalScaleMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9523,7 +9524,7 @@ GameObject:
   - component: {fileID: 1823500614}
   - component: {fileID: 1823500613}
   - component: {fileID: 1823500612}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: PlayerMinimapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
