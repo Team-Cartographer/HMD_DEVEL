@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -71,6 +72,18 @@ public class GatewayConnection : MonoBehaviour
         StartCoroutine(GetTODOState());
         StartCoroutine(GetWARNINGState());
         StartCoroutine(GetGEOJSONState());
+    }
+
+    public IEnumerator PostRequest(string postSection, string postData)
+    {
+        using (UnityWebRequest webRequest = UnityWebRequest.PostWwwForm(url+"/"+postSection, postData))
+        {
+            webRequest.SetRequestHeader("Content-Type", "application/json");
+            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(postData);
+            webRequest.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
+            webRequest.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+            yield return webRequest.SendWebRequest();
+        }
     }
 
     private IEnumerator GetRequest(string uri)

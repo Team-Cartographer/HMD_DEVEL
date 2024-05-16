@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2653783973006345554}
   - component: {fileID: 4852099925496670977}
   m_Layer: 0
-  m_Name: WorldPin
+  m_Name: HMDWorldPin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c2c16e55336d6364db578e19c663ad50, type: 2}
+  - {fileID: 2100000, guid: 1cb50984712484b45aaea6cca72fac8e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -171,7 +171,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 515ca3c88292d554dbe9649ebe3dc317, type: 2}
+  - {fileID: 2100000, guid: e47e67436beb9d349aec317d4379b696, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -278,7 +278,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 515ca3c88292d554dbe9649ebe3dc317, type: 2}
+  - {fileID: 2100000, guid: e47e67436beb9d349aec317d4379b696, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

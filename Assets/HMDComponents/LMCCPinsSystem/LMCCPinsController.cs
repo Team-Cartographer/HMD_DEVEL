@@ -9,13 +9,16 @@ using System.Linq;
 using UnityEngine.XR.ARSubsystems;
 using System.Net;
 using System.Text;
+using UnityEngine.InputSystem.XR;
 
 public class LMCCPinsController : MonoBehaviour
 {
     [SerializeField] ConnectionHandler connectionHandler;
     GatewayConnection gatewayConnection;
+    HMDPinsSync hmdPinsSync;
 
-    [SerializeField] GameObject worldPin;
+    [SerializeField] GameObject lmccWorldPin;
+    [SerializeField] GameObject hmdWorldPin;
 
     // serialized for debug
     [SerializeField] List<LMCCPin> lmccPins;
@@ -31,6 +34,9 @@ public class LMCCPinsController : MonoBehaviour
     void Start()
     {
         gatewayConnection = connectionHandler.GetConnection();
+        hmdPinsSync = GetComponent<HMDPinsSync>();
+        hmdPinsSync.SetGatewayConnection(gatewayConnection);
+        hmdPinsSync.SetMapCenter(mapCenterUTM15);
     }
 
     // Update is called once per frame
@@ -39,22 +45,10 @@ public class LMCCPinsController : MonoBehaviour
         if (gatewayConnection != null && gatewayConnection.isGEOJSONUpdated())
         {
             UpdateLMCCPins(gatewayConnection.GetGEOJSONJsonString());
+            //Debug.Log(gatewayConnection.GetGEOJSONJsonString());
             UpdatePinsOnField();
         }
     }
-
-    /*public IEnumerator AddPinFromHMD(string pinJson)
-    {
-        using (UnityWebRequest webRequest = new UnityWebRequest(lmccPostPinURL, "POST"))
-        {
-            var inputAsBytes = Encoding.UTF8.GetBytes(pinJson);
-            webRequest.uploadHandler = new UploadHandlerRaw(inputAsBytes);
-            webRequest.downloadHandler = new DownloadHandlerBuffer();
-            webRequest.SetRequestHeader("Content-Type", "application/json");
-            yield return webRequest.SendWebRequest();
-            Debug.Log("Status Code: " + webRequest.responseCode);
-        }
-    }*/
 
     void UpdatePinsOnField() // checks to see if any of the lmcc pins have a physical pin object in the world and creates one if not
     {
@@ -64,7 +58,8 @@ public class LMCCPinsController : MonoBehaviour
             {
                 double[] convertedCoords = CenterUTMCoords(pin.coordinates);
                 Vector3 worldPos = new Vector3((float) convertedCoords[0], 0, (float) convertedCoords[1]);
-                pin.worldPin = Instantiate(worldPin, worldPos, Quaternion.identity);
+                if (pin.isHMDPin) pin.worldPin = Instantiate(hmdWorldPin, worldPos, Quaternion.identity);
+                else pin.worldPin = Instantiate(lmccWorldPin, worldPos, Quaternion.identity);
             }
         }
     }
@@ -112,27 +107,6 @@ public class LMCCPinsController : MonoBehaviour
     }
 }
 
-
-// all these below are for each section of the json;
-// most important is the class LMCCPin, which has coords, a physical pin, and a variable checking if it was placed on the HMD side first
-[System.Serializable]
-public class FeatureCollection
-{
-    public List<Feature> features;
-}
-
-[System.Serializable]
-public class Feature
-{
-    public Point point;
-}
-
-[System.Serializable]
-public class Point
-{
-    public int[][] coordinates;
-}
-
 [System.Serializable]
 public class LMCCPin
 {
@@ -140,55 +114,3 @@ public class LMCCPin
     public GameObject worldPin = null;
     public bool isHMDPin = false;
 }
-
-
-// Old code that may need to be used again in the future
-
-/*void AddAndRemoveLMCCPins(string jsonString)
-{
-    // breaks down geojson
-    FeatureCollection featureCollection = JsonConvert.DeserializeObject<FeatureCollection>(jsonString);
-    List<double> featureLatCoords = new List<double>();
-    List<double> featureLongCoords = new List<double>();
-
-    Debug.Log("NUM FEATURES: " + featureCollection.features.Count);
-
-    foreach (Feature feature in featureCollection.features)
-    {
-        // adds lmcc pins to list; checks to see if there's duplicate coords (i.e. pin already placed at coords);
-        // if there are, it won't add an extra pin
-        Debug.Log("Feature Point is null: " + (feature.point == null));
-        Debug.Log("Coords exist: " + feature.point.coordinates[0][0].ToString() + " " + feature.point.coordinates[0][1].ToString());
-        double[] coords = { 0,0 };
-        featureLatCoords.Add(coords[0]);
-        featureLongCoords.Add(coords[1]);
-        if (!pinLatCoords.Contains(coords[0]) && !pinLongCoords.Contains(coords[1]))
-        {
-            pinLatCoords.Add(coords[0]);
-            pinLongCoords.Add(coords[1]);
-            LMCCPin newPin = new LMCCPin { coordinates = new double[] { coords[0], coords[1] } };
-            lmccPins.Add(newPin);
-        }
-    }
-
-    // checks to see if any pins have been removed from the lmcc server, and will delete those that have been
-    for (int i = lmccPins.Count() - 1; i >= 0; i--)
-    {
-        bool containsCoords = featureLatCoords.Contains(lmccPins[i].coordinates[0]) &&
-            featureLongCoords.Contains(lmccPins[i].coordinates[1]);
-        if (!containsCoords)
-        {
-            if (lmccPins[i].worldPin) Destroy(lmccPins[i].worldPin);
-            pinLatCoords.RemoveAt(i);
-            pinLongCoords.RemoveAt(i);
-            lmccPins.RemoveAt(i);
-        }
-    }
-}*/
-
-/*public double[] ConvertLatLongToMeter(double[] lmccPinCoords) // approximate conversion; input format: [lat, long]
-{
-    double latToZ = (mapCenterLatLon[0] - lmccPinCoords[0]) * 111111;
-    double longToX = (mapCenterLatLon[1] - lmccPinCoords[1]) * 111111;
-    return new double[] { latToZ, 0, longToX };
-}*/
