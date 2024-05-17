@@ -83,12 +83,12 @@ public class TelemetryScript : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))  // Change to hand commands
             {
-                telemetryHeader.text = "EVA 1 Telemetry Data:";
+                PageOne();
 
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))  // Change to hand commands
             {
-                telemetryHeader.text = "EVA 2 Telemetry Data:";
+                PageTwo();
 
             }
 
@@ -102,5 +102,30 @@ public class TelemetryScript : MonoBehaviour
             }
 
         }
+    }
+
+    public void OpenTelemetry()
+    {
+        telemetryCanvas.gameObject.SetActive(true);
+    }
+    public void CloseTelemetry()
+    {
+        telemetryCanvas.gameObject.SetActive(false);
+    }
+    public void PageOne()
+    {
+        telemetryHeader.text = "EVA 1 Telemetry Data:";
+    }
+    public void PageTwo()
+    {
+        telemetryHeader.text = "EVA 2 Telemetry Data:";
+    }
+    public void OpenTime()
+    {
+        activeTime.gameObject.SetActive(true);
+    }
+    public void CloseTime()
+    {
+        activeTime.gameObject.SetActive(false);
     }
 }

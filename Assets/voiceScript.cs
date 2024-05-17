@@ -29,6 +29,7 @@ public class voiceScript : MonoBehaviour
             // telemetry
             "telemetry on", "telemetry off",
             "page one", "page two",
+            "time on", "time off",
 
             // critical telemetry
             "critical on", "critical off",
@@ -65,19 +66,19 @@ public class voiceScript : MonoBehaviour
         // warning system
         if (args.text == "warning on")
         {
-
+            warningSystemScript.OpenWarning();
         }
         else if (args.text == "warning off") 
         {
-
+            warningSystemScript.CloseWarning();
         }
         else if (args.text == "to do on")
         {
-
+            warningSystemScript.OpenToDo();
         }
         else if (args.text == "to do off")
         {
-
+            warningSystemScript.CloseToDo();
         }
         else if (args.text == "task done")
         {
@@ -87,19 +88,27 @@ public class voiceScript : MonoBehaviour
         // telemetry
         else if (args.text == "telemetry on")
         {
-            
+            telemetryScript.OpenTelemetry();
         }
         else if (args.text == "telemetry off")
         {
-
+            telemetryScript.CloseTime();
         }
         else if (args.text == "page one")
         {
-
+            telemetryScript.PageOne();
         }
         else if (args.text == "page two")
         {
-
+            telemetryScript.PageTwo();
+        }
+        else if (args.text == "time on")
+        {
+            telemetryScript.OpenTime();
+        }
+        else if (args.text == "time off")
+        {
+            telemetryScript.CloseTime();
         }
 
         // critical telemetry

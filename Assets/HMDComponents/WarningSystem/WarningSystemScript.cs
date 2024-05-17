@@ -79,17 +79,28 @@ public class WarningSystemScript : MonoBehaviour
         }
     }
 
-    void OpenWarning()
+    public void OpenWarning()
     {
         warningText.gameObject.SetActive(true);
         warningDetailsText.gameObject.SetActive(true);
         warningVignette.gameObject.SetActive(true);
     }
 
-    void CloseWarning()
+    public void CloseWarning()
     {
         warningText.gameObject.SetActive(false);
         warningDetailsText.gameObject.SetActive(false);
         warningVignette.gameObject.SetActive(false);
+    }
+
+    public void OpenToDo()
+    {
+        messageText.gameObject.SetActive(true);
+        messageDetailsText.gameObject.SetActive(true);
+    }
+    public void CloseToDo()
+    {
+        messageText.gameObject.SetActive(false);
+        messageDetailsText.gameObject.SetActive(false);
     }
 }
