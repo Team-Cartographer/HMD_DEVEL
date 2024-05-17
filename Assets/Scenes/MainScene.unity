@@ -12862,7 +12862,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connectionHandler: {fileID: 1183467018}
   lmccWorldPin: {fileID: 3627275342200852551, guid: fb56f31fb811b884fb827152d75dca8f, type: 3}
-  hmdWorldPin: {fileID: 3627275342200852551, guid: 2c762c341dddfb74a9add3daf6d1d597, type: 3}
+  lmccWorldBreadcrumb: {fileID: 3627275342200852551, guid: 8d15770269b38e84ca1a0449f385faba, type: 3}
+  lmccRover: {fileID: 3627275342200852551, guid: 69083a5d50af84f4cb4a2a65d6dede20, type: 3}
   lmccPins: []
   pinLatCoords: []
   pinLongCoords: []

@@ -6,6 +6,9 @@ public class WorldPinBehavior : MonoBehaviour
 {
     GameObject mainCamera;
     [SerializeField] float distanceMetersShowPopup = 2;
+
+    [Header("For Deleting Pins")]
+    [SerializeField] bool makeRemovable = true;
     [SerializeField] GameObject popup;
 
     // Start is called before the first frame update
@@ -17,6 +20,8 @@ public class WorldPinBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!makeRemovable) return;
+
         if (Mathf.Abs((transform.position - mainCamera.transform.position).magnitude) <= distanceMetersShowPopup)
         {
             popup.SetActive(true);

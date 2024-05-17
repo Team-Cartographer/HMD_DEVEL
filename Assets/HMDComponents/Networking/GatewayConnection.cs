@@ -71,7 +71,7 @@ public class GatewayConnection : MonoBehaviour
         StartCoroutine(GetTSSINFOState());
         StartCoroutine(GetTODOState());
         StartCoroutine(GetWARNINGState());
-        StartCoroutine(GetGEOJSONState());
+        //StartCoroutine(GetGEOJSONState());
         StartCoroutine(GetGEOJSONHMDState());
     }
 
