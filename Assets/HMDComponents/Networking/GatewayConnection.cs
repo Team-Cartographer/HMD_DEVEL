@@ -18,7 +18,7 @@ public class GatewayConnection : MonoBehaviour
         { "UIA", false }, { "DCU", false }, { "ROVER", false }, { "SPEC", false },
         { "TELEMETRY", false }, { "COMM", false }, { "IMU", false }, { "ERROR", false },
         { "ROCKDATA", false }, { "EVAINFO", false }, { "TSSINFO", false },
-        { "TODO", false }, { "WARNING", false }, { "GEOJSON", false }
+        { "TODO", false }, { "WARNING", false }, { "GEOJSON", false }, { "GEOJSONHMD", false }
     };
 
     private Dictionary<string, string> jsonStrings = new Dictionary<string, string>
@@ -26,7 +26,7 @@ public class GatewayConnection : MonoBehaviour
         { "UIA", "" }, { "DCU", "" }, { "ROVER", "" }, { "SPEC", "" },
         { "TELEMETRY", "" }, { "COMM", "" }, { "IMU", "" }, { "ERROR", "" },
         { "ROCKDATA", "" }, { "EVAINFO", "" }, { "TSSINFO", "" },
-        { "TODO", "" }, { "WARNING", "" }, { "GEOJSON", "" }
+        { "TODO", "" }, { "WARNING", "" }, { "GEOJSON", "" }, { "GEOJSONHMD", "" }
     };
 
     public void ConnectToHost(string host, int port)
@@ -72,6 +72,7 @@ public class GatewayConnection : MonoBehaviour
         StartCoroutine(GetTODOState());
         StartCoroutine(GetWARNINGState());
         StartCoroutine(GetGEOJSONState());
+        StartCoroutine(GetGEOJSONHMDState());
     }
 
     public IEnumerator PostRequest(string postSection, string postData)
@@ -126,6 +127,7 @@ public class GatewayConnection : MonoBehaviour
     private IEnumerator GetTODOState() { yield return GetState("TODO", "/todo"); }
     private IEnumerator GetWARNINGState() { yield return GetState("WARNING", "/warning"); }
     private IEnumerator GetGEOJSONState() { yield return GetState("GEOJSON", "/geojson"); }
+    private IEnumerator GetGEOJSONHMDState() { yield return GetState("GEOJSONHMD", "/geojson_hmd"); }
 
     #endregion
 
@@ -232,6 +234,11 @@ public class GatewayConnection : MonoBehaviour
         return this.GetJsonString("GEOJSON");
     }
 
+    public string GetGEOJSONHMDJsonString()
+    {
+        return this.GetJsonString("GEOJSONHMD");
+    }
+
 
 
     public bool isDCUUpdated()
@@ -302,6 +309,11 @@ public class GatewayConnection : MonoBehaviour
     public bool isGEOJSONUpdated()
     {
         return this.IsStateUpdated("GEOJSON");
+    }
+
+    public bool isGEOJSONHMDUpdated()
+    {
+        return this.IsStateUpdated("GEOJSONHMD");
     }
 
 }

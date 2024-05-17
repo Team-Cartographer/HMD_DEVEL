@@ -28,21 +28,23 @@ public class HMDPinsSync : MonoBehaviour
 
     public void AddHMDPin(Vector3 position)
     {
+        Debug.Log("attempting to add pin");
         int[] coords = ConvertUnityToUTMCoords(position);
         var data = new
         {
             feature = new
             {
                 type = "Feature",
-                properties = new
-                {
-                    name = "",
-                    description = coords[0] + "x" + coords[1]
-                },
                 geometry = new
                 {
                     type = "Point",
-                    coordinates = new int[][] { new int[] { coords[0], coords[1] } }
+                    coordinates = new int[]{ coords[0], coords[1] }
+                },
+                properties = new
+                {
+                    name = "HMDPoint",
+                    description = coords[0] + "x" + coords[1],
+                    utm = new float[] { 0.0f, 0.0f }
                 }
             }
         };
@@ -54,20 +56,22 @@ public class HMDPinsSync : MonoBehaviour
     public void RemovePin(Vector3 position)
     {
         int[] coords = ConvertUnityToUTMCoords(position);
+        Debug.Log("attempting to remove pin");
         var data = new
         {
             feature = new
             {
                 type = "Feature",
-                properties = new
-                {
-                    name = "",
-                    description = coords[0] + "x" + coords[1]
-                },
                 geometry = new
                 {
                     type = "Point",
-                    coordinates = new int[][] { new int[] { coords[0], coords[1] } }
+                    coordinates = new int[] { coords[0], coords[1] }
+                },
+                properties = new
+                {
+                    name = "HMDPoint",
+                    description = coords[0] + "x" + coords[1],
+                    utm = new float[] { 0.0f, 0.0f }
                 }
             }
         };

@@ -42,13 +42,15 @@ public class LMCCPinsController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gatewayConnection != null && gatewayConnection.isGEOJSONUpdated())
+        if (gatewayConnection != null && gatewayConnection.isGEOJSONHMDUpdated())
         {
-            UpdateLMCCPins(gatewayConnection.GetGEOJSONJsonString());
-            //Debug.Log(gatewayConnection.GetGEOJSONJsonString());
+            string jsonData = gatewayConnection.GetGEOJSONHMDJsonString();
+            UpdateLMCCPins(jsonData);
             UpdatePinsOnField();
         }
     }
+
+
 
     void UpdatePinsOnField() // checks to see if any of the lmcc pins have a physical pin object in the world and creates one if not
     {
@@ -58,8 +60,7 @@ public class LMCCPinsController : MonoBehaviour
             {
                 double[] convertedCoords = CenterUTMCoords(pin.coordinates);
                 Vector3 worldPos = new Vector3((float) convertedCoords[0], 0, (float) convertedCoords[1]);
-                if (pin.isHMDPin) pin.worldPin = Instantiate(hmdWorldPin, worldPos, Quaternion.identity);
-                else pin.worldPin = Instantiate(lmccWorldPin, worldPos, Quaternion.identity);
+                pin.worldPin = Instantiate(lmccWorldPin, worldPos, Quaternion.identity);
             }
         }
     }
@@ -80,16 +81,20 @@ public class LMCCPinsController : MonoBehaviour
         List<double> retrievedLongCoords = new List<double>();
         foreach (JObject feature in features)
         {
-            JArray coordinates = (JArray)feature["geometry"]["coordinates"];
-            double[] coords = { coordinates[0][0].Value<double>(), coordinates[0][1].Value<double>() };
+            string name = (string)feature["name"];
+            string description = (string)feature["description"];
+            string[] coordinates = description.Split('x');
+            double[] coords = { double.Parse(coordinates[0]), double.Parse(coordinates[1]) };
             retrievedLatCoords.Add(coords[0]);
             retrievedLongCoords.Add(coords[1]);
-            if (!pinLatCoords.Contains(coords[0]) && !pinLongCoords.Contains(coords[1]))
+            bool isPinByName = (name == "") || !(name == "EVA 1" || name == "EVA 2" || name == "Rover" || name == "EVA 1 Cache Point" || name == "EVA 2 Cache Point" || name == "Rover Cache Point");
+            if (isPinByName && !pinLatCoords.Contains(coords[0]) && !pinLongCoords.Contains(coords[1]))
             {
                 pinLatCoords.Add(coords[0]);
                 pinLongCoords.Add(coords[1]);
-                LMCCPin newPin = new LMCCPin { coordinates = new double[] { coords[0], coords[1] } };
+                LMCCPin newPin = new LMCCPin { name = name, coordinates = new double[] { coords[0], coords[1] } };
                 lmccPins.Add(newPin);
+                
             }
         }
         for (int i = lmccPins.Count() - 1; i >= 0; i--)
@@ -110,7 +115,7 @@ public class LMCCPinsController : MonoBehaviour
 [System.Serializable]
 public class LMCCPin
 {
+    public string name;
     public double[] coordinates;
     public GameObject worldPin = null;
-    public bool isHMDPin = false;
 }
