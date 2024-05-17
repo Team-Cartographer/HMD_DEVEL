@@ -114,35 +114,35 @@ public class voiceScript : MonoBehaviour
         // critical telemetry
         else if (args.text == "critical on")
         {
-
+            criticalTelemetryScript.OpenCriticalTelemetry();
         }
         else if (args.text == "critical off")
         {
-
+            criticalTelemetryScript.CloseCriticalTelemetry();
         }
         else if (args.text == "bpm on")
         {
-
+            criticalTelemetryScript.OpenBPM();
         }
         else if (args.text == "bpm off")
         {
-
+            criticalTelemetryScript.CloseBPM();
         }
         else if (args.text == "battery life on")
         {
-
+            criticalTelemetryScript.OpenBatteryLife();
         }
         else if (args.text == "battery life off")
         {
-
+            criticalTelemetryScript.CloseBatteryLife();
         }
         else if (args.text == "oxygen life on")
         {
-
+            criticalTelemetryScript.OpenOxyTime();
         }
         else if (args.text == "oxygen life off")
         {
-
+            criticalTelemetryScript.CloseOxyTime();
         }
 
         // compass
