@@ -4,31 +4,45 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.ConstrainedExecution;
 using System.Threading;
+using TMPro;
+using Unity.Barracuda;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FlareRemoval : MonoBehaviour
 {
     // Start is called before the first frame update
     public Camera mainCamera;
+    public NNModel modelAsset;
+    public Canvas textCanvas;
+
     float lastTime;
-    int ctr = 0;
+
+    private Model m_RuntimeModel;
+    private IWorker worker; 
+
 
     void Start()
     {
+        m_RuntimeModel = ModelLoader.Load(modelAsset);
+
+        worker = WorkerFactory.CreateWorker(WorkerFactory.Type.CSharp, m_RuntimeModel);
+
         lastTime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - lastTime < 5) { return; }
+        if (Time.time - lastTime < 3) { return; }
 
         
         lastTime = Time.time;
 
         Rect rect = new Rect(0, 0, mainCamera.pixelWidth, mainCamera.pixelHeight);
         RenderTexture renderTexture = new RenderTexture(mainCamera.pixelWidth, mainCamera.pixelHeight, 24);
-        Texture2D screenShot = new Texture2D(mainCamera.pixelWidth, mainCamera.pixelHeight, TextureFormat.RGBA32, false);
+
+        Texture2D screenShot = new Texture2D(mainCamera.pixelWidth, mainCamera.pixelHeight, TextureFormat.RGB24, false);
 
         mainCamera.targetTexture = renderTexture;
         mainCamera.Render();
@@ -42,23 +56,26 @@ public class FlareRemoval : MonoBehaviour
         mainCamera.targetTexture = null;
         RenderTexture.active = null;
 
-        byte[] arr = new byte[screenShot.height * screenShot.width];
+        Tensor tensor = new Tensor(screenShot);
+        worker.Execute(tensor);
 
-        int ctr = 0;
+        Tensor output = worker.PeekOutput();
 
-        for (int i = 0; i < screenShot.height; i++)
+        float flare = softmax(output[0], output[1]);
+        float nonflare = softmax(output[1], output[0]);
+        
+        if (flare >= 0.6)
         {
-            for (int j = 0; j < screenShot.width; j++)
-            {
-                Color p = screenShot.GetPixel(i, j);
-
-                arr[ctr] = (byte) Convert.ToInt32(0.2126 * p.r + 0.7152 * p.g + 0.0722 * p.b * 255);
-                ctr++;
-            }
+            textCanvas.enabled = true;
         }
-
-        Debug.Log(screenShot.height);
-        Debug.Log(screenShot.width);
-        ctr += 1;
+        else
+        {
+            textCanvas.enabled = false;
+        }
+    }
+    float softmax(float x, float y)
+    {
+        float ex = Mathf.Exp(x);
+        return ex / (ex + Mathf.Exp(y));
     }
 }
