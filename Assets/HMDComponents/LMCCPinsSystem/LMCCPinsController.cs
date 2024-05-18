@@ -10,6 +10,7 @@ using UnityEngine.XR.ARSubsystems;
 using System.Net;
 using System.Text;
 using UnityEngine.InputSystem.XR;
+using System.Threading;
 
 public class LMCCPinsController : MonoBehaviour
 {
@@ -17,9 +18,12 @@ public class LMCCPinsController : MonoBehaviour
     GatewayConnection gatewayConnection;
     HMDPinsSync hmdPinsSync;
 
+    [Header("Pins Management")]
+    [SerializeField] Transform pinsHolder;
     [SerializeField] GameObject lmccWorldPin;
     [SerializeField] GameObject lmccWorldBreadcrumb;
     [SerializeField] GameObject lmccRover;
+    [SerializeField] GameObject lmccEVA;
 
     [Header("Serialized for Debug")]
     [SerializeField] List<LMCCPin> importantMarkers;
@@ -57,18 +61,16 @@ public class LMCCPinsController : MonoBehaviour
 
     void UpdatePinOnField(LMCCPin pin, char option) // checks to see if any of the lmcc pins have a physical pin object in the world and creates one if not
     {
-        /*foreach (LMCCPin pin in lmccPins)
-        {
-            
-        }*/
+        double[] convertedCoords = CenterUTMCoords(pin.coordinates);
+        Vector3 worldPos = new Vector3((float)convertedCoords[0], 0, (float)convertedCoords[1]);
+        GameObject toInstantiate = option == 'r' ? lmccRover : option == 'e' ? lmccEVA : option == 'b' ? lmccWorldBreadcrumb : lmccWorldPin;
 
-        if (!pin.worldPin) // KEEP LOOKING HERE MAYBE FOR EVA/ROVER NOT SHOWING ON MAP
+        if (!pin.worldPin)
         {
-            double[] convertedCoords = CenterUTMCoords(pin.coordinates);
-            Vector3 worldPos = new Vector3((float)convertedCoords[0], 0, (float)convertedCoords[1]);
-            GameObject toInstantiate = option == 'r' ? lmccRover : option == 'e' ? lmccRover : option == 'b' ? lmccWorldBreadcrumb : lmccWorldPin;
             pin.worldPin = Instantiate(toInstantiate, worldPos, Quaternion.identity);
+            pin.worldPin.transform.SetParent(pinsHolder);
         }
+        else pin.worldPin.transform.position = worldPos;
     }
 
     public double[] CenterUTMCoords(double[] lmccPinCoords)
@@ -87,6 +89,7 @@ public class LMCCPinsController : MonoBehaviour
         List<double> retrievedLatCoords = new List<double>();
         List<double> retrievedLongCoords = new List<double>();
 
+        // manages addition of pins, depending on pin type
         foreach (JObject feature in features)
         {
             string name = (string)feature["name"];
@@ -95,34 +98,48 @@ public class LMCCPinsController : MonoBehaviour
             double[] coords = { double.Parse(coordinates[0]), double.Parse(coordinates[1]) };
             retrievedLatCoords.Add(coords[0]);
             retrievedLongCoords.Add(coords[1]);
-            if (name == "EVA 1" || name == "EVA 2" || name == "Rover") 
+            LMCCPin newPin = null;
+            if ((name == "EVA 1" || name == "EVA 2" || name == "Rover")) 
             {
-                LMCCPin newPin = new LMCCPin(name, coords);
-                bool isEVA = newPin.name == "EVA 1" || newPin.name == "EVA 2";
-                bool isRover = newPin.name == "Rover";
-                char option = isRover ? 'r' : 'e';
-                UpdatePinOnField(newPin, option);
-                importantMarkers.Add(newPin);
+                if (importantMarkers.Count < 3)
+                {
+                    newPin = new LMCCPin(name, coords);
+                    bool isEVA = newPin.name == "EVA 1" || newPin.name == "EVA 2";
+                    bool isRover = newPin.name == "Rover";
+                    char option = isRover ? 'r' : 'e';
+                    UpdatePinOnField(newPin, option);
+                    importantMarkers.Add(newPin);
+                }
+                else
+                {
+                    newPin = null;
+                    foreach(LMCCPin p in importantMarkers) if (p.name == name) newPin = p;
+                    newPin.coordinates = coords;
+                    char option = newPin.name == "Rover" ? 'r' : 'e';
+                    UpdatePinOnField(newPin, option);
+                }
             }
             else if (!pinLatCoords.Contains(coords[0]) && !pinLongCoords.Contains(coords[1]))
             {
                 pinLatCoords.Add(coords[0]);
                 pinLongCoords.Add(coords[1]);
-                LMCCPin newPin = new LMCCPin(name, coords);
+                newPin = new LMCCPin(name, coords);
                 bool isBreadcrumb = newPin.name == "EVA 1 Cache Point" || newPin.name == "EVA 2 Cache Point" || newPin.name == "Rover Cache Point";
                 char option = isBreadcrumb ? 'b' : 'p';
                 UpdatePinOnField(newPin, option);
                 lmccPins.Add(newPin);
-
             }
+            try
+            {
+                newPin.worldPin.GetComponent<WorldPinBehavior>().SetPinName(newPin.name);
+            } catch { }
         }
-        //Debug.Log("Size:" + lmccPins.Count());
+        
+        // manages deleted pins
         for (int i = lmccPins.Count() - 1; i >= 0; i--)
-        { // KEEP LOOKING HERE MAYBE FOR EVA/ROVER NOT SHOWING ON MAP
-            //Debug.Log("name: " + lmccPins[i].name);
+        {
             bool containsCoords = retrievedLatCoords.Contains(lmccPins[i].coordinates[0]) &&
                 retrievedLongCoords.Contains(lmccPins[i].coordinates[1]);
-            //bool isEVAorRover = lmccPins[i].name == "EVA 1" || lmccPins[i].name == "EVA 2" || lmccPins[i].name == "Rover";
             if (!containsCoords)
             {
                 if (lmccPins[i].worldPin) Destroy(lmccPins[i].worldPin);

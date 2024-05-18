@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WorldPinBehavior : MonoBehaviour
 {
     GameObject mainCamera;
     [SerializeField] float distanceMetersShowPopup = 2;
 
-    [Header("For Deleting Pins")]
+    [Header("For Removable Pins")]
     [SerializeField] bool makeRemovable = true;
     [SerializeField] GameObject popup;
+    [SerializeField] TMP_Text nameText;
+    string pinName;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +36,13 @@ public class WorldPinBehavior : MonoBehaviour
     public void RemoveThisPin()
     {
         Debug.Log("attempting to delete pin");
-        FindAnyObjectByType<HMDPinsSync>().RemovePin(transform.position);
+        FindAnyObjectByType<HMDPinsSync>().RemovePin(transform.position, pinName);
+    }
+
+    public void SetPinName(string n) 
+    {
+        pinName = n;
+        if (pinName == "" || pinName.Length == 0 || pinName == null) nameText.text = "Unnamed Pin";
+        else nameText.text = "Name:\n" + n; 
     }
 }

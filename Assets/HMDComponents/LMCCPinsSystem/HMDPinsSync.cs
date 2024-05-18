@@ -53,7 +53,7 @@ public class HMDPinsSync : MonoBehaviour
         StartCoroutine(gatewayConnection.PostRequest("addfeature", jsonData));
     }
 
-    public void RemovePin(Vector3 position)
+    public void RemovePin(Vector3 position, string pinName)
     {
         int[] coords = ConvertUnityToUTMCoords(position);
         Debug.Log("attempting to remove pin");
@@ -69,7 +69,7 @@ public class HMDPinsSync : MonoBehaviour
                 },
                 properties = new
                 {
-                    name = "HMDPoint",
+                    name = pinName,
                     description = coords[0] + "x" + coords[1],
                     utm = new float[] { 0.0f, 0.0f }
                 }
