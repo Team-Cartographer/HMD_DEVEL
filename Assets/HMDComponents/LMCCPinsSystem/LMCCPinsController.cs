@@ -21,7 +21,8 @@ public class LMCCPinsController : MonoBehaviour
     [SerializeField] GameObject lmccWorldBreadcrumb;
     [SerializeField] GameObject lmccRover;
 
-    // serialized for debug
+    [Header("Serialized for Debug")]
+    [SerializeField] List<LMCCPin> importantMarkers;
     [SerializeField] List<LMCCPin> lmccPins;
     [SerializeField] List<double> pinLatCoords;
     [SerializeField] List<double> pinLongCoords;
@@ -54,7 +55,7 @@ public class LMCCPinsController : MonoBehaviour
 
 
 
-    void UpdatePinOnField(LMCCPin pin) // checks to see if any of the lmcc pins have a physical pin object in the world and creates one if not
+    void UpdatePinOnField(LMCCPin pin, char option) // checks to see if any of the lmcc pins have a physical pin object in the world and creates one if not
     {
         /*foreach (LMCCPin pin in lmccPins)
         {
@@ -65,11 +66,7 @@ public class LMCCPinsController : MonoBehaviour
         {
             double[] convertedCoords = CenterUTMCoords(pin.coordinates);
             Vector3 worldPos = new Vector3((float)convertedCoords[0], 0, (float)convertedCoords[1]);
-            //bool isPin = (name == "") || !(name == "EVA 1" || name == "EVA 2" || name == "Rover" || name == "EVA 1 Cache Point" || name == "EVA 2 Cache Point" || name == "Rover Cache Point");
-            bool isBreadcrumb = pin.name == "EVA 1 Cache Point" || pin.name == "EVA 2 Cache Point" || pin.name == "Rover Cache Point";
-            bool isEVA = pin.name == "EVA 1" || pin.name == "EVA 2";
-            bool isRover = pin.name == "Rover";
-            GameObject toInstantiate = isEVA ? lmccRover : isRover ? lmccRover : isBreadcrumb ? lmccWorldBreadcrumb : lmccWorldPin;
+            GameObject toInstantiate = option == 'r' ? lmccRover : option == 'e' ? lmccRover : option == 'b' ? lmccWorldBreadcrumb : lmccWorldPin;
             pin.worldPin = Instantiate(toInstantiate, worldPos, Quaternion.identity);
         }
     }
@@ -89,6 +86,7 @@ public class LMCCPinsController : MonoBehaviour
         JArray features = (JArray) pinsJson["features"];
         List<double> retrievedLatCoords = new List<double>();
         List<double> retrievedLongCoords = new List<double>();
+
         foreach (JObject feature in features)
         {
             string name = (string)feature["name"];
@@ -97,29 +95,45 @@ public class LMCCPinsController : MonoBehaviour
             double[] coords = { double.Parse(coordinates[0]), double.Parse(coordinates[1]) };
             retrievedLatCoords.Add(coords[0]);
             retrievedLongCoords.Add(coords[1]);
-            if (!pinLatCoords.Contains(coords[0]) && !pinLongCoords.Contains(coords[1]))
+            if (name == "EVA 1" || name == "EVA 2" || name == "Rover") 
+            {
+                LMCCPin newPin = new LMCCPin(name, coords);
+                bool isEVA = newPin.name == "EVA 1" || newPin.name == "EVA 2";
+                bool isRover = newPin.name == "Rover";
+                char option = isRover ? 'r' : 'e';
+                UpdatePinOnField(newPin, option);
+                importantMarkers.Add(newPin);
+            }
+            else if (!pinLatCoords.Contains(coords[0]) && !pinLongCoords.Contains(coords[1]))
             {
                 pinLatCoords.Add(coords[0]);
                 pinLongCoords.Add(coords[1]);
                 LMCCPin newPin = new LMCCPin(name, coords);
-                UpdatePinOnField(newPin);
+                bool isBreadcrumb = newPin.name == "EVA 1 Cache Point" || newPin.name == "EVA 2 Cache Point" || newPin.name == "Rover Cache Point";
+                char option = isBreadcrumb ? 'b' : 'p';
+                UpdatePinOnField(newPin, option);
                 lmccPins.Add(newPin);
-                
+
             }
         }
-        Debug.Log("Size:" + lmccPins.Count());
+        //Debug.Log("Size:" + lmccPins.Count());
         for (int i = lmccPins.Count() - 1; i >= 0; i--)
         { // KEEP LOOKING HERE MAYBE FOR EVA/ROVER NOT SHOWING ON MAP
-            Debug.Log("name: " + lmccPins[i].name);
+            //Debug.Log("name: " + lmccPins[i].name);
             bool containsCoords = retrievedLatCoords.Contains(lmccPins[i].coordinates[0]) &&
                 retrievedLongCoords.Contains(lmccPins[i].coordinates[1]);
-            bool isEVAorRover = lmccPins[i].name == "EVA 1" || lmccPins[i].name == "EVA 2" || lmccPins[i].name == "Rover";
-            if (!isEVAorRover && !containsCoords)
+            //bool isEVAorRover = lmccPins[i].name == "EVA 1" || lmccPins[i].name == "EVA 2" || lmccPins[i].name == "Rover";
+            if (!containsCoords)
             {
                 if (lmccPins[i].worldPin) Destroy(lmccPins[i].worldPin);
                 pinLatCoords.RemoveAt(i);
                 pinLongCoords.RemoveAt(i);
                 lmccPins.RemoveAt(i);
+            }
+            if (3 < importantMarkers.Count && i < importantMarkers.Count)
+            {
+                if (importantMarkers[i].worldPin) Destroy(importantMarkers[i].worldPin);
+                importantMarkers.RemoveAt(i);
             }
         }
     }
