@@ -13,6 +13,8 @@ public class EVAController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (PlayerPrefs.GetInt("evaNumber") != 1 || PlayerPrefs.GetInt("evaNumber") != 2) PlayerPrefs.SetInt("evaNumber", 1);
+        evaNumber = PlayerPrefs.GetInt("evaNumber");
         switchEVAText.text = "Switch EVA\n(Current: " + evaNumber + ")";
     }
 
@@ -30,6 +32,7 @@ public class EVAController : MonoBehaviour
     public void SwitchEVANumber()
     {
         evaNumber = evaNumber == 1 ? 2 : evaNumber == 2 ? 1 : 1;
+        PlayerPrefs.SetInt("evaNumber", evaNumber);
         switchEVAText.text = "Switch EVA\n(Current: " + evaNumber + ")";
     }
 }
