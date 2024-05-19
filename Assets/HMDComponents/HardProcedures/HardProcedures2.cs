@@ -48,7 +48,11 @@ public class HardProcedures2 : MonoBehaviour
     void InitializeProcedures()
     {
         procedures.Add("EGRESS", new List<string> { "Egress step 1", "Egress step 2" });
-        procedures.Add("GEO", new List<string> { "Geo step 1", "Geo step 2", "Geo step 3" });
+        procedures.Add("GEO", new List<string> { "1. If available, perform Field Notes on Rock, which can include picture, voice notes, etc.",
+                                                "2. Press and HOLD XRF trigger",
+                                                "3. Aim close to sample until beep, then release trigger",
+                                                "4. If Rock Composition outside of nominal parameters, collect rock",
+                                                "5. If able, drop and label a pin" });
         procedures.Add("REPAIR", new List<string> { "Repair step 1", "Repair step 2" });
         procedures.Add("INGRESS", new List<string> { "Ingress step 1", "Ingress step 2" });
     }
