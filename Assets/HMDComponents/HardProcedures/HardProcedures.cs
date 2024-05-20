@@ -1,185 +1,141 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using MixedReality.Toolkit.UX;
-using Newtonsoft.Json.Linq;
 using TMPro;
-using UnityEngine;
-using UnityEngine.UIElements;
-using System.Collections.Generic;
-using System.Reflection.Emit;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.PackageManager.UI;
+using UnityEditor.Hardware;
+using UnityEngine;
+using UnityEngine.InputSystem.HID;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering.VirtualTexturing;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
+using static UnityEditor.PlayerSettings;
 
-public class ProcedureScript : MonoBehaviour
+public class HardProcedures2 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public GameObject TitlePanel;
-    public PressableButton TitleButton;
-    public TMP_Text HPTitle;
+    public GameObject mainPanel;
+    public Button proceduresButton;
 
-    public GameObject MenuPanel;
-    public TMP_Text EgressButtonText;
-    public TMP_Text GeoButtonText;
-    public PressableButton GeoButton;
-    public TMP_Text RepairButtonText;
-    public TMP_Text IngressButtonText;
-    public TMP_Text BackMenuButtonText;
+    public GameObject menuPanel;
+    public Button egressButton;
+    public Button geoButton;
+    public Button repairButton;
+    public Button ingressButton;
+    public Button emergencyButton;
+    public Button backButton;
 
-    public GameObject ProcedurePanel;
-    public TMP_Text PreviousButtonText;
-    public TMP_Text ExitButtonText;
-    public TMP_Text NextButtonText;
-    public PressableButton NextButton;
-    public TMP_Text ProcedureText;
+    public GameObject procedurePanel;
+    public TMP_Text procedureText;
+    public Button exitButton;
+    public Button nextButton;
+    public Button previousButton;
 
-    // public PressableButton ExitButton;
-    //public ConnectionHandler connectionHandler;
-
-    // private int prevID = 0;
-    private int instructionNumber = 0;
-    private string currentProcedureType;
-    // 
-    // void Start()
-    // {
-    //     DisplayTitlePanel();
-    //     HPTitle.text = "PROCEDURES";
-    //     EgressButton.text = "EGRESS";
-    //     GeoButton.text = "GEO";
-    //     RepairButton.text = "REPAIR";
-    //     IngressButton.text = "INGRESS";
-    //     BackMenuButton.text = "BACK";
-    // 
-    //     ExitButtonText.text = "EXIT";
-    //     PreviousButtonText.text = "BACK";
-    //     NextButtonText.text = "NEXT";
-    // 
-    // 
-    //     NextButton.OnClicked.AddListener(IncrementInstruction);
-    // }
-    // 
-    // // Update is called once per frame
-    // void Update()
-    // {
-    // 
-    //     Dictionary<int, string> egress = new Dictionary<int, string>();
-    //     Dictionary<int, string> geo = new Dictionary<int, string>();
-    //     Dictionary<int, string> repair = new Dictionary<int, string>();
-    //     Dictionary<int, string> ingress = new Dictionary<int, string>();
-    //     egress.Add(1, "");
-    //     geo.Add(1, "EV Open Sampling Procedure");
-    //     geo.Add(2, "If available, perform Field Notes on Rock, which can include picture, voice notes, etc.");
-    //     geo.Add(3, "Perform XRF Scan");
-    //     geo.Add(4, "Press and HOLD trigger");
-    //     geo.Add(5, "Aim close to sample until beep, then release trigger");
-    //     geo.Add(6, "If Rock Composition outside of nominal parameters(define), collect rock.");
-    //     geo.Add(7, "If able, drop and label a pin");
-    // 
-    // 
-    // 
-    //     //TitleButton.onClick(DisplayMenuPanel());
-    //     if (MenuPanel.tag != null && MenuPanel.tag == "egress")
-    //     {
-    //         // ProcedureText.text = $"{instructionNumber}: {egress[instructionNumber]}";
-    //         ProcedureText.text = "EGRESS TEXT";
-    //     } 
-    //     else if (MenuPanel.tag != null && MenuPanel.tag == "geo")
-    //     {
-    //         //ProcedureText.text = $"{instructionNumber}: {geo[instructionNumber]}";
-    //         ProcedureText.text = "GEOLOGICAL SAMPLING TEXT";
-    //     } 
-    //     else if (MenuPanel.tag != null && MenuPanel.tag == "repair")
-    //     {
-    //         // ProcedureText.text = $"{instructionNumber}: {repair[instructionNumber]}";
-    //         ProcedureText.text = "REPAIR TEXT";
-    //     }
-    //     else if (MenuPanel.tag != null && MenuPanel.tag == "ingress")
-    //     {
-    //         // ProcedureText.text = $"{instructionNumber}: {repair[instructionNumber]}";
-    //         ProcedureText.text = "INGRESS TEXT";
-    //     }
-    // }
-    // 
-    void IncrementInstruction()
-    {
-        instructionNumber++;  // Increment the click counter
-        Debug.Log("Button has been clicked " + instructionNumber + " times.");
-    }
     
-    
-    void DisplayTitlePanel()
-    {
-        TitlePanel.SetActive(true);
-        MenuPanel.SetActive(false);
-        ProcedurePanel.SetActive(false);
-    }
-    
-    void DisplayMenuPanel()
-    {
-        MenuPanel.SetActive(true);
-        TitlePanel.SetActive(false);
-        ProcedurePanel.SetActive(false);
-    }
-    
-    void DisplayProcedurePanel()
-    {
-        ProcedurePanel.SetActive(true);
-        TitlePanel.SetActive(false);
-        MenuPanel.SetActive(false);
-    }
 
-
-    private Dictionary<int, string> geo = new Dictionary<int, string>();
+    private Dictionary<string, List<string>> procedures = new Dictionary<string, List<string>>();
+    private int currentInstructionIndex = 0;
+    private string currentProcedure = "";
 
     void Start()
     {
-        DisplayTitlePanel();
-        //InitializeUI();
-        InitializeDictionaries();
+        InitializeProcedures();
+        ShowPanel(mainPanel);
 
-        NextButton.OnClicked.AddListener(IncrementInstruction);
-        // GeoButton.OnClicked(AddListener(() => SetActiveProcedure("geo")));
-        // Repeat for other buttons
+        proceduresButton.onClick.AddListener(() => ShowPanel(menuPanel));
+        
+
+        egressButton.onClick.AddListener(() => StartProcedure("EGRESS"));
+        geoButton.onClick.AddListener(() => StartProcedure("GEO"));
+        repairButton.onClick.AddListener(() => StartProcedure("REPAIR"));
+        ingressButton.onClick.AddListener(() => StartProcedure("INGRESS"));
+        emergencyButton.onClick.AddListener(() => StartProcedure("EMERGENCY"));
+        backButton.onClick.AddListener(() => ShowPanel(mainPanel));
+
+        exitButton.onClick.AddListener(() => ShowPanel(menuPanel));
+        nextButton.onClick.AddListener(NextInstruction);
+        previousButton.onClick.AddListener(PreviousInstruction);
+
     }
 
-    private void addListenerFunction(string procedure)
+    void InitializeProcedures()
     {
-        // addListener(() => SetActiveProcedure(procedure));
+        procedures.Add("EGRESS", new List<string> {"1. EV1 and EV2 connect UIA and DCU umbilical",
+            "2. EV-1, EV-2 PWR – ON", 
+            "3. BATT – UMB", 
+            "4. DEPRESS PUMP PWR – ON", 
+            "4. OXYGEN O2 VENT – OPEN", 
+            "5. Wait until both Primary and Secondary OXY tanks are < 10psi", 
+            "6. OXYGEN O2 VENT – CLOSE", 
+            "7. OXY – PRI", "" +
+            "8. OXYGEN EMU-1, EMU-2 – OPEN", 
+            "9. Wait until EV1 and EV2 Primary O2 tanks > 3000 psi", 
+            "10. OXYGEN EMU-1, EMU-2 – CLOSE", 
+            "11. OXY – SEC", 
+            "12. OXYGEN EMU-1, EMU-2 – OPEN", 
+            "13. Wait until EV1 and EV2 Secondary O2 tanks > 3000 psi", 
+            "14. OXYGEN EMU-1, EMU-2 – CLOSE",
+            "15. OXY – PRI Prep Water Tanks",
+            "1. PUMP – OPEN", 
+            "2. EV-1, EV-2 WASTE WATER – OPEN  3. Wait until water EV1 and EV2 Coolant tank is < 5% UIA 4. EV-1, EV-2 WASTE WATER – CLOSE UIA 5. EV-1, EV-2 SUPPLY WATER – OPEN HMD 6. Wait until water EV1 and EV2 Coolant tank is > 95% UIA 7. EV-1, EV-2 SUPPLY WATER – CLOSE BOTH DCU 8. PUMP – CLOSE END Depress, Check Switches and Disconnect HMD 1. Wait until SUIT P, O2 P = 4 UIA 2. DEPRESS PUMP PWR – OFF BOTH DCU 3. BATT – LOCAL UIA 9. EV-1, EV-2 PWR - OFF BOTH DCU 4. Verify OXY – PRI BOTH DCU 5. Verify COMMS – A BOTH DCU 6. Verify FAN – PRI BOTH DCU 7. Verify PUMP – CLOSE BOTH DCU 8. Verify CO2 – AUIA and DCU 9. EV1 and EV2 disconnect UIA and DCU umbilica" });
+
+        procedures.Add("GEO", new List<string> { "1. If available, perform Field Notes on Rock, which can include picture, voice notes, etc.",
+                                                "2. Press and HOLD XRF trigger",
+                                                "3. Aim close to sample until beep, then release trigger",
+                                                "4. If Rock Composition outside of nominal parameters, collect rock",
+                                                "5. If able, drop and label a pin" });
+
+        procedures.Add("REPAIR", new List<string> { "Repair step 1", "Repair step 2" });
+        procedures.Add("INGRESS", new List<string> { "Ingress step 1", "Ingress step 2" });
+        procedures.Add("EMERGENCY", new List<string> { "Emergency step 1", "Emergency Step 2" });
     }
 
-    private void InitializeDictionaries()
+    void ShowPanel(GameObject panel)
     {
-        geo.Add(1, "EV Open Sampling Procedure");
-        geo.Add(2, "If available, perform Field Notes on Rock, which can include picture, voice notes, etc.");
-        // Add more entries
+        mainPanel.SetActive(false);
+        menuPanel.SetActive(false);
+        procedurePanel.SetActive(false);
+
+        panel.SetActive(true);
     }
 
-    private void SetActiveProcedure(string procedureType)
+    void StartProcedure(string procedure)
     {
-        currentProcedureType = procedureType; // Assuming currentProcedureType is a string field to keep track
-        DisplayProcedurePanel();
+        currentProcedure = procedure;
+        currentInstructionIndex = 0;
+        UpdateProcedureText();
+        ShowPanel(procedurePanel);
     }
 
-    void Update()
+    void NextInstruction()
     {
-        if (ProcedurePanel.activeSelf) // Make sure the procedure panel is active
+        if (currentInstructionIndex < procedures[currentProcedure].Count - 1)
         {
+            currentInstructionIndex++;
             UpdateProcedureText();
         }
     }
 
-    private void UpdateProcedureText()
+    void PreviousInstruction()
     {
-        switch (currentProcedureType)
+        if (currentInstructionIndex > 0)
         {
-            case "geo":
-                ProcedureText.text = $"{instructionNumber}: {geo[instructionNumber]}";
-                break;
-                // Handle other cases
+            // Debug.Log("Previous Button Clicked ----------------------------------------------------------------");
+            currentInstructionIndex--;
+            // Debug.Log($"Current Instruction Index: {currentInstructionIndex}");
+            UpdateProcedureText();
+            // Debug.Log($"Current Procedure: {procedures[currentProcedure][currentInstructionIndex]}");
+            ShowPanel(procedurePanel);
+        } else if (currentInstructionIndex == 0)
+        {
+            ShowPanel(procedurePanel);
         }
     }
 
+    void UpdateProcedureText()
+    {
+        if (procedures.ContainsKey(currentProcedure) && procedures[currentProcedure].Count > currentInstructionIndex)
+        {
+            procedureText.text = procedures[currentProcedure][currentInstructionIndex];
+        }
+    }
 }
