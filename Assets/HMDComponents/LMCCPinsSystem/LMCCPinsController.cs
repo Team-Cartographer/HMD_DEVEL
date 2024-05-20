@@ -62,7 +62,10 @@ public class LMCCPinsController : MonoBehaviour
         }
     }
 
-
+    public int[] GetMapCenterUTM_yx()
+    {
+        return mapCenterUTM_yx;
+    }
 
     void UpdatePinOnField(LMCCPin pin, char option) // checks to see if any of the lmcc pins have a physical pin object in the world and creates one if not
     {
