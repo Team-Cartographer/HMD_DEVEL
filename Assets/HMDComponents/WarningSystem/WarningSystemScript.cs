@@ -15,7 +15,7 @@ public class WarningSystemScript : MonoBehaviour
     public TMP_Text warningDetailsText;
     public TMP_Text messageText;
     public TMP_Text messageDetailsText;
-    public RawImage warningVignette;
+    public GameObject warningVignette;
 
     public ConnectionHandler connection;
 
@@ -83,13 +83,13 @@ public class WarningSystemScript : MonoBehaviour
     {
         warningText.gameObject.SetActive(true);
         warningDetailsText.gameObject.SetActive(true);
-        warningVignette.gameObject.SetActive(true);
+        warningVignette.SetActive(true);
     }
 
     void CloseWarning()
     {
         warningText.gameObject.SetActive(false);
         warningDetailsText.gameObject.SetActive(false);
-        warningVignette.gameObject.SetActive(false);
+        warningVignette.SetActive(false);
     }
 }
