@@ -11,6 +11,7 @@ public class CriticalTelemetry : MonoBehaviour
     public TMP_Text bpmText;
     public TMP_Text battLife;
     public TMP_Text oxyTime;
+    public Canvas criticalTelemetryCanvas;
 
     public ConnectionHandler connection;
 
@@ -111,4 +112,36 @@ public class CriticalTelemetry : MonoBehaviour
         oxyTime.text += $"{ohours:D2}:{ominutes:D2}:{(int)oxytime:D2}";
     }
 
+    public void OpenCriticalTelemetry()
+    {
+        criticalTelemetryCanvas.gameObject.SetActive(true);
+    }
+    public void CloseCriticalTelemetry()
+    {
+        criticalTelemetryCanvas.gameObject.SetActive(false);
+    }
+    public void OpenBPM()
+    {
+        bpmText.gameObject.SetActive(true);
+    }
+    public void CloseBPM()
+    {
+        bpmText.gameObject.SetActive(false);
+    }
+    public void OpenBatteryLife()
+    {
+        battLife.gameObject.SetActive(true);
+    }
+    public void CloseBatteryLife()
+    {
+        battLife.gameObject.SetActive(false);
+    }
+    public void OpenOxyTime()
+    {
+        oxyTime.gameObject.SetActive(true);
+    }
+    public void CloseOxyTime()
+    {
+        oxyTime.gameObject.SetActive(false);
+    }
 }
