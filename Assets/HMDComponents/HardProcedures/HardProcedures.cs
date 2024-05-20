@@ -11,7 +11,7 @@ using UnityEngine.UI;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using static UnityEditor.PlayerSettings;
 
-public class HardProcedures2 : MonoBehaviour
+public class HardProcedures : MonoBehaviour
 {
     public GameObject mainPanel;
     public Button proceduresButton;
@@ -30,7 +30,13 @@ public class HardProcedures2 : MonoBehaviour
     public Button nextButton;
     public Button previousButton;
 
-    
+    public GameObject emergencyPanel;
+    public Button o2ErrorButton;
+    public Button fanErrorButton;
+    public Button abortMission;
+
+
+
 
     private Dictionary<string, List<string>> procedures = new Dictionary<string, List<string>>();
     private int currentInstructionIndex = 0;
@@ -41,17 +47,24 @@ public class HardProcedures2 : MonoBehaviour
         InitializeProcedures();
         ShowPanel(mainPanel);
 
+        // StartProcedure("EMERGENCY")
+
         proceduresButton.onClick.AddListener(() => ShowPanel(menuPanel));
-        
+        emergencyButton.onClick.AddListener(() => ShowPanel(emergencyPanel));
 
         egressButton.onClick.AddListener(() => StartProcedure("EGRESS"));
         geoButton.onClick.AddListener(() => StartProcedure("GEO"));
         repairButton.onClick.AddListener(() => StartProcedure("REPAIR"));
         ingressButton.onClick.AddListener(() => StartProcedure("INGRESS"));
-        emergencyButton.onClick.AddListener(() => StartProcedure("EMERGENCY"));
+
+        o2ErrorButton.onClick.AddListener(() => StartProcedure("O2ERROR"));
+        fanErrorButton.onClick.AddListener(() => StartProcedure("FANERROR"));
+        abortMission.onClick.AddListener(() => StartProcedure("ABORT"));
+
+
         backButton.onClick.AddListener(() => ShowPanel(mainPanel));
 
-        exitButton.onClick.AddListener(() => ShowPanel(menuPanel));
+        exitButton.onClick.AddListener(() => ShowPanel(mainPanel));
         nextButton.onClick.AddListener(NextInstruction);
         previousButton.onClick.AddListener(PreviousInstruction);
 
@@ -86,13 +99,17 @@ public class HardProcedures2 : MonoBehaviour
 
         procedures.Add("REPAIR", new List<string> { "Repair step 1", "Repair step 2" });
         procedures.Add("INGRESS", new List<string> { "Ingress step 1", "Ingress step 2" });
-        procedures.Add("EMERGENCY", new List<string> { "Emergency step 1", "Emergency Step 2" });
+
+        procedures.Add("O2ERROR", new List<string> { "Emergency step 1", "Emergency Step 2" });
+        procedures.Add("FANERROR", new List<string> { "Emergency step 1", "Emergency Step 2" });
+        procedures.Add("ABORT", new List<string> { "Emergency step 1", "Emergency Step 2" });
     }
 
     void ShowPanel(GameObject panel)
     {
         mainPanel.SetActive(false);
         menuPanel.SetActive(false);
+        emergencyPanel.SetActive(false);
         procedurePanel.SetActive(false);
 
         panel.SetActive(true);
