@@ -1728,24 +1728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480b3bd30c351748b6f0ef514d279ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1937796964}
-  proceduresButton: {fileID: 208735467}
-  menuPanel: {fileID: 1322633448}
-  egressButton: {fileID: 1278433963}
-  geoButton: {fileID: 1257701523}
-  repairButton: {fileID: 1441374038}
-  ingressButton: {fileID: 927086580}
-  emergencyButton: {fileID: 0}
-  backButton: {fileID: 539620824}
-  procedurePanel: {fileID: 1716729469}
-  procedureText: {fileID: 1322454481}
-  exitButton: {fileID: 1370998892}
-  nextButton: {fileID: 464088018}
-  previousButton: {fileID: 1699082189}
-  emergencyPanel: {fileID: 0}
-  o2ErrorButton: {fileID: 0}
-  fanErrorButton: {fileID: 0}
-  abortMission: {fileID: 0}
 --- !u!1 &241336264
 GameObject:
   m_ObjectHideFlags: 0
@@ -3487,24 +3469,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480b3bd30c351748b6f0ef514d279ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1937796964}
-  proceduresButton: {fileID: 208735467}
-  menuPanel: {fileID: 1322633448}
-  egressButton: {fileID: 1278433963}
-  geoButton: {fileID: 1257701523}
-  repairButton: {fileID: 375770362}
-  ingressButton: {fileID: 927086580}
-  emergencyButton: {fileID: 375770362}
-  backButton: {fileID: 539620824}
-  procedurePanel: {fileID: 1716729469}
-  procedureText: {fileID: 1322454481}
-  exitButton: {fileID: 1370998892}
-  nextButton: {fileID: 464088018}
-  previousButton: {fileID: 1699082189}
-  emergencyPanel: {fileID: 0}
-  o2ErrorButton: {fileID: 0}
-  fanErrorButton: {fileID: 0}
-  abortMission: {fileID: 0}
 --- !u!114 &375770362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4414,24 +4378,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480b3bd30c351748b6f0ef514d279ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1937796964}
-  proceduresButton: {fileID: 208735467}
-  menuPanel: {fileID: 1322633448}
-  egressButton: {fileID: 1278433963}
-  geoButton: {fileID: 1257701523}
-  repairButton: {fileID: 1441374038}
-  ingressButton: {fileID: 927086580}
-  emergencyButton: {fileID: 0}
-  backButton: {fileID: 539620824}
-  procedurePanel: {fileID: 1716729469}
-  procedureText: {fileID: 1322454481}
-  exitButton: {fileID: 1370998892}
-  nextButton: {fileID: 464088018}
-  previousButton: {fileID: 1699082189}
-  emergencyPanel: {fileID: 0}
-  o2ErrorButton: {fileID: 0}
-  fanErrorButton: {fileID: 0}
-  abortMission: {fileID: 0}
 --- !u!1 &502725330
 GameObject:
   m_ObjectHideFlags: 0
@@ -4800,24 +4746,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480b3bd30c351748b6f0ef514d279ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1937796964}
-  proceduresButton: {fileID: 208735467}
-  menuPanel: {fileID: 1322633448}
-  egressButton: {fileID: 1278433963}
-  geoButton: {fileID: 1257701523}
-  repairButton: {fileID: 1441374038}
-  ingressButton: {fileID: 927086580}
-  emergencyButton: {fileID: 0}
-  backButton: {fileID: 539620824}
-  procedurePanel: {fileID: 1716729469}
-  procedureText: {fileID: 1322454481}
-  exitButton: {fileID: 1370998892}
-  nextButton: {fileID: 464088018}
-  previousButton: {fileID: 1699082189}
-  emergencyPanel: {fileID: 0}
-  o2ErrorButton: {fileID: 0}
-  fanErrorButton: {fileID: 0}
-  abortMission: {fileID: 0}
 --- !u!114 &539620824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8232,24 +8160,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480b3bd30c351748b6f0ef514d279ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1937796964}
-  proceduresButton: {fileID: 208735467}
-  menuPanel: {fileID: 1322633448}
-  egressButton: {fileID: 1278433963}
-  geoButton: {fileID: 1257701523}
-  repairButton: {fileID: 1441374038}
-  ingressButton: {fileID: 927086580}
-  emergencyButton: {fileID: 0}
-  backButton: {fileID: 539620824}
-  procedurePanel: {fileID: 1716729469}
-  procedureText: {fileID: 1322454481}
-  exitButton: {fileID: 1370998892}
-  nextButton: {fileID: 464088018}
-  previousButton: {fileID: 1699082189}
-  emergencyPanel: {fileID: 0}
-  o2ErrorButton: {fileID: 0}
-  fanErrorButton: {fileID: 0}
-  abortMission: {fileID: 0}
 --- !u!1 &937583437
 GameObject:
   m_ObjectHideFlags: 0
@@ -8890,24 +8800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480b3bd30c351748b6f0ef514d279ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1937796964}
-  proceduresButton: {fileID: 208735467}
-  menuPanel: {fileID: 1322633448}
-  egressButton: {fileID: 1278433963}
-  geoButton: {fileID: 1257701523}
-  repairButton: {fileID: 1441374038}
-  ingressButton: {fileID: 927086580}
-  emergencyButton: {fileID: 0}
-  backButton: {fileID: 539620824}
-  procedurePanel: {fileID: 1048698735}
-  procedureText: {fileID: 0}
-  exitButton: {fileID: 0}
-  nextButton: {fileID: 0}
-  previousButton: {fileID: 0}
-  emergencyPanel: {fileID: 0}
-  o2ErrorButton: {fileID: 0}
-  fanErrorButton: {fileID: 0}
-  abortMission: {fileID: 0}
 --- !u!114 &1048698738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10249,24 +10141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480b3bd30c351748b6f0ef514d279ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1937796964}
-  proceduresButton: {fileID: 208735467}
-  menuPanel: {fileID: 1322633448}
-  egressButton: {fileID: 1278433963}
-  geoButton: {fileID: 1257701523}
-  repairButton: {fileID: 1441374038}
-  ingressButton: {fileID: 927086580}
-  emergencyButton: {fileID: 0}
-  backButton: {fileID: 539620824}
-  procedurePanel: {fileID: 1716729469}
-  procedureText: {fileID: 1322454481}
-  exitButton: {fileID: 1370998892}
-  nextButton: {fileID: 464088018}
-  previousButton: {fileID: 1699082189}
-  emergencyPanel: {fileID: 0}
-  o2ErrorButton: {fileID: 0}
-  fanErrorButton: {fileID: 0}
-  abortMission: {fileID: 0}
 --- !u!1 &1264754108
 GameObject:
   m_ObjectHideFlags: 0
@@ -10473,24 +10347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480b3bd30c351748b6f0ef514d279ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1937796964}
-  proceduresButton: {fileID: 208735467}
-  menuPanel: {fileID: 1322633448}
-  egressButton: {fileID: 1278433963}
-  geoButton: {fileID: 1257701523}
-  repairButton: {fileID: 1441374038}
-  ingressButton: {fileID: 927086580}
-  emergencyButton: {fileID: 0}
-  backButton: {fileID: 539620824}
-  procedurePanel: {fileID: 1716729469}
-  procedureText: {fileID: 1322454481}
-  exitButton: {fileID: 1370998892}
-  nextButton: {fileID: 464088018}
-  previousButton: {fileID: 1699082189}
-  emergencyPanel: {fileID: 0}
-  o2ErrorButton: {fileID: 0}
-  fanErrorButton: {fileID: 0}
-  abortMission: {fileID: 0}
 --- !u!1 &1283695126
 GameObject:
   m_ObjectHideFlags: 0
@@ -10673,24 +10529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480b3bd30c351748b6f0ef514d279ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1937796964}
-  proceduresButton: {fileID: 208735467}
-  menuPanel: {fileID: 1322633448}
-  egressButton: {fileID: 1278433963}
-  geoButton: {fileID: 1257701523}
-  repairButton: {fileID: 1441374038}
-  ingressButton: {fileID: 927086580}
-  emergencyButton: {fileID: 0}
-  backButton: {fileID: 539620824}
-  procedurePanel: {fileID: 1716729469}
-  procedureText: {fileID: 1322454481}
-  exitButton: {fileID: 1370998892}
-  nextButton: {fileID: 464088018}
-  previousButton: {fileID: 1699082189}
-  emergencyPanel: {fileID: 0}
-  o2ErrorButton: {fileID: 0}
-  fanErrorButton: {fileID: 0}
-  abortMission: {fileID: 0}
 --- !u!222 &1322454480
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10881,24 +10719,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480b3bd30c351748b6f0ef514d279ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1937796964}
-  proceduresButton: {fileID: 208735467}
-  menuPanel: {fileID: 1322633448}
-  egressButton: {fileID: 1278433963}
-  geoButton: {fileID: 1257701523}
-  repairButton: {fileID: 1441374038}
-  ingressButton: {fileID: 927086580}
-  emergencyButton: {fileID: 0}
-  backButton: {fileID: 539620824}
-  procedurePanel: {fileID: 1716729469}
-  procedureText: {fileID: 1322454481}
-  exitButton: {fileID: 1370998892}
-  nextButton: {fileID: 464088018}
-  previousButton: {fileID: 1699082189}
-  emergencyPanel: {fileID: 0}
-  o2ErrorButton: {fileID: 0}
-  fanErrorButton: {fileID: 0}
-  abortMission: {fileID: 0}
 --- !u!1001 &1324315945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11583,24 +11403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480b3bd30c351748b6f0ef514d279ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1937796964}
-  proceduresButton: {fileID: 208735467}
-  menuPanel: {fileID: 1322633448}
-  egressButton: {fileID: 1278433963}
-  geoButton: {fileID: 1257701523}
-  repairButton: {fileID: 1441374038}
-  ingressButton: {fileID: 927086580}
-  emergencyButton: {fileID: 0}
-  backButton: {fileID: 539620824}
-  procedurePanel: {fileID: 1716729469}
-  procedureText: {fileID: 1322454481}
-  exitButton: {fileID: 1370998892}
-  nextButton: {fileID: 464088018}
-  previousButton: {fileID: 1699082189}
-  emergencyPanel: {fileID: 0}
-  o2ErrorButton: {fileID: 0}
-  fanErrorButton: {fileID: 0}
-  abortMission: {fileID: 0}
 --- !u!1 &1429830757
 GameObject:
   m_ObjectHideFlags: 0
@@ -11869,24 +11671,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480b3bd30c351748b6f0ef514d279ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1937796964}
-  proceduresButton: {fileID: 208735467}
-  menuPanel: {fileID: 1322633448}
-  egressButton: {fileID: 1278433963}
-  geoButton: {fileID: 1257701523}
-  repairButton: {fileID: 1441374038}
-  ingressButton: {fileID: 927086580}
-  emergencyButton: {fileID: 0}
-  backButton: {fileID: 539620824}
-  procedurePanel: {fileID: 1716729469}
-  procedureText: {fileID: 1322454481}
-  exitButton: {fileID: 1370998892}
-  nextButton: {fileID: 464088018}
-  previousButton: {fileID: 1699082189}
-  emergencyPanel: {fileID: 0}
-  o2ErrorButton: {fileID: 0}
-  fanErrorButton: {fileID: 0}
-  abortMission: {fileID: 0}
 --- !u!1 &1456935575
 GameObject:
   m_ObjectHideFlags: 0
@@ -11939,24 +11723,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480b3bd30c351748b6f0ef514d279ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1937796964}
-  proceduresButton: {fileID: 208735467}
-  menuPanel: {fileID: 1322633448}
-  egressButton: {fileID: 1278433963}
-  geoButton: {fileID: 1257701523}
-  repairButton: {fileID: 1456935578}
-  ingressButton: {fileID: 927086580}
-  emergencyButton: {fileID: 1456935578}
-  backButton: {fileID: 539620824}
-  procedurePanel: {fileID: 1716729469}
-  procedureText: {fileID: 1322454481}
-  exitButton: {fileID: 1370998892}
-  nextButton: {fileID: 464088018}
-  previousButton: {fileID: 1699082189}
-  emergencyPanel: {fileID: 0}
-  o2ErrorButton: {fileID: 0}
-  fanErrorButton: {fileID: 0}
-  abortMission: {fileID: 0}
 --- !u!114 &1456935578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12891,24 +12657,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480b3bd30c351748b6f0ef514d279ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1937796964}
-  proceduresButton: {fileID: 208735467}
-  menuPanel: {fileID: 1322633448}
-  egressButton: {fileID: 1278433963}
-  geoButton: {fileID: 1257701523}
-  repairButton: {fileID: 1549734159}
-  ingressButton: {fileID: 927086580}
-  emergencyButton: {fileID: 1549734159}
-  backButton: {fileID: 539620824}
-  procedurePanel: {fileID: 1716729469}
-  procedureText: {fileID: 1322454481}
-  exitButton: {fileID: 1370998892}
-  nextButton: {fileID: 464088018}
-  previousButton: {fileID: 1699082189}
-  emergencyPanel: {fileID: 0}
-  o2ErrorButton: {fileID: 0}
-  fanErrorButton: {fileID: 0}
-  abortMission: {fileID: 0}
 --- !u!114 &1549734159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13247,9 +12995,9 @@ MonoBehaviour:
   connectionHandler: {fileID: 1183467018}
   pinsHolder: {fileID: 0}
   lmccWorldPin: {fileID: 3627275342200852551, guid: fb56f31fb811b884fb827152d75dca8f, type: 3}
-  lmccWorldBreadcrumb: {fileID: 0}
-  lmccRover: {fileID: 0}
-  lmccEVA: {fileID: 0}
+  lmccWorldBreadcrumb: {fileID: 3627275342200852551, guid: 8d15770269b38e84ca1a0449f385faba, type: 3}
+  lmccRover: {fileID: 3627275342200852551, guid: 69083a5d50af84f4cb4a2a65d6dede20, type: 3}
+  lmccEVA: {fileID: 3627275342200852551, guid: 6ef3e1d36a187a641a3bd02626c01365, type: 3}
   importantMarkers: []
   lmccPins: []
   pinLatCoords: []
@@ -13669,24 +13417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480b3bd30c351748b6f0ef514d279ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1937796964}
-  proceduresButton: {fileID: 208735467}
-  menuPanel: {fileID: 1322633448}
-  egressButton: {fileID: 1278433963}
-  geoButton: {fileID: 1257701523}
-  repairButton: {fileID: 1441374038}
-  ingressButton: {fileID: 927086580}
-  emergencyButton: {fileID: 0}
-  backButton: {fileID: 539620824}
-  procedurePanel: {fileID: 1716729469}
-  procedureText: {fileID: 1322454481}
-  exitButton: {fileID: 1370998892}
-  nextButton: {fileID: 464088018}
-  previousButton: {fileID: 1699082189}
-  emergencyPanel: {fileID: 0}
-  o2ErrorButton: {fileID: 0}
-  fanErrorButton: {fileID: 0}
-  abortMission: {fileID: 0}
 --- !u!1 &1701380755
 GameObject:
   m_ObjectHideFlags: 0
@@ -14079,24 +13809,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480b3bd30c351748b6f0ef514d279ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1937796964}
-  proceduresButton: {fileID: 208735467}
-  menuPanel: {fileID: 1322633448}
-  egressButton: {fileID: 1278433963}
-  geoButton: {fileID: 1257701523}
-  repairButton: {fileID: 1441374038}
-  ingressButton: {fileID: 927086580}
-  emergencyButton: {fileID: 0}
-  backButton: {fileID: 539620824}
-  procedurePanel: {fileID: 1716729469}
-  procedureText: {fileID: 1322454481}
-  exitButton: {fileID: 1370998892}
-  nextButton: {fileID: 464088018}
-  previousButton: {fileID: 1699082189}
-  emergencyPanel: {fileID: 0}
-  o2ErrorButton: {fileID: 0}
-  fanErrorButton: {fileID: 0}
-  abortMission: {fileID: 0}
 --- !u!1001 &1764235906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14763,24 +14475,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480b3bd30c351748b6f0ef514d279ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1937796964}
-  proceduresButton: {fileID: 208735467}
-  menuPanel: {fileID: 1322633448}
-  egressButton: {fileID: 1278433963}
-  geoButton: {fileID: 1257701523}
-  repairButton: {fileID: 1821896960}
-  ingressButton: {fileID: 927086580}
-  emergencyButton: {fileID: 1821896960}
-  backButton: {fileID: 539620824}
-  procedurePanel: {fileID: 1716729469}
-  procedureText: {fileID: 1322454481}
-  exitButton: {fileID: 1370998892}
-  nextButton: {fileID: 464088018}
-  previousButton: {fileID: 1699082189}
-  emergencyPanel: {fileID: 0}
-  o2ErrorButton: {fileID: 0}
-  fanErrorButton: {fileID: 0}
-  abortMission: {fileID: 0}
 --- !u!114 &1821896960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15686,24 +15380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480b3bd30c351748b6f0ef514d279ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1937796964}
-  proceduresButton: {fileID: 208735467}
-  menuPanel: {fileID: 1322633448}
-  egressButton: {fileID: 1278433963}
-  geoButton: {fileID: 1257701523}
-  repairButton: {fileID: 1441374038}
-  ingressButton: {fileID: 927086580}
-  emergencyButton: {fileID: 0}
-  backButton: {fileID: 539620824}
-  procedurePanel: {fileID: 1716729469}
-  procedureText: {fileID: 1322454481}
-  exitButton: {fileID: 1370998892}
-  nextButton: {fileID: 464088018}
-  previousButton: {fileID: 1699082189}
-  emergencyPanel: {fileID: 0}
-  o2ErrorButton: {fileID: 0}
-  fanErrorButton: {fileID: 0}
-  abortMission: {fileID: 0}
 --- !u!1 &1949543615
 GameObject:
   m_ObjectHideFlags: 0
