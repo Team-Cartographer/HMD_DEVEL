@@ -51,7 +51,7 @@ public class CriticalTelemetry : MonoBehaviour
         string telem = conn.GetTELEMETRYJsonString();
         if (string.IsNullOrEmpty(telem))
         {
-            Debug.LogError("Telemetry data is empty or null.");
+            //Debug.LogError("Telemetry data is empty or null.");
         }
         else 
         {
@@ -65,7 +65,7 @@ public class CriticalTelemetry : MonoBehaviour
             }
             catch (JsonReaderException ex)
             {
-                Debug.LogError($"Failed to parse JSON: {ex.Message}. Data: {telem}");
+                //Debug.LogError($"Failed to parse JSON: {ex.Message}. Data: {telem}");
             }
         }
         yield return new WaitForSecondsRealtime(apiCallTimeInterval);
