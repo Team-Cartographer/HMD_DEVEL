@@ -13248,7 +13248,6 @@ MonoBehaviour:
   connectionHandler: {fileID: 1183467018}
   lmccWorldPin: {fileID: 3627275342200852551, guid: fb56f31fb811b884fb827152d75dca8f, type: 3}
   hmdWorldPin: {fileID: 0}
-=======
   pinsHolder: {fileID: 1503165004}
   lmccWorldPin: {fileID: 3627275342200852551, guid: fb56f31fb811b884fb827152d75dca8f, type: 3}
   lmccWorldBreadcrumb: {fileID: 3627275342200852551, guid: 8d15770269b38e84ca1a0449f385faba, type: 3}
