@@ -13248,6 +13248,13 @@ MonoBehaviour:
   connectionHandler: {fileID: 1183467018}
   lmccWorldPin: {fileID: 3627275342200852551, guid: fb56f31fb811b884fb827152d75dca8f, type: 3}
   hmdWorldPin: {fileID: 0}
+=======
+  pinsHolder: {fileID: 1503165004}
+  lmccWorldPin: {fileID: 3627275342200852551, guid: fb56f31fb811b884fb827152d75dca8f, type: 3}
+  lmccWorldBreadcrumb: {fileID: 3627275342200852551, guid: 8d15770269b38e84ca1a0449f385faba, type: 3}
+  lmccRover: {fileID: 3627275342200852551, guid: 69083a5d50af84f4cb4a2a65d6dede20, type: 3}
+  lmccEVA: {fileID: 3627275342200852551, guid: 6ef3e1d36a187a641a3bd02626c01365, type: 3}
+  importantMarkers: []
   lmccPins: []
   pinLatCoords: []
   pinLongCoords: []
@@ -17530,6 +17537,9 @@ MonoBehaviour:
   connectionHandler: {fileID: 1183467018}
   setIPText: {fileID: 1096082246}
   currentIPText: {fileID: 276945301}
+  cameraOffset: {fileID: 914455087}
+  xPosText: {fileID: 1348316588}
+  zPosText: {fileID: 775327585}
 --- !u!1 &2086355215
 GameObject:
   m_ObjectHideFlags: 0
