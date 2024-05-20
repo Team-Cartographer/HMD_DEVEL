@@ -2320,8 +2320,6 @@ Transform:
   m_Children:
   - {fileID: 1555175808}
   - {fileID: 2049457174}
-  - {fileID: 1283695127}
-  - {fileID: 1376077959}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &325718748
@@ -10236,7 +10234,6 @@ GameObject:
   - component: {fileID: 1283695127}
   - component: {fileID: 1283695129}
   - component: {fileID: 1283695128}
-  - component: {fileID: 1283695131}
   - component: {fileID: 1283695130}
   m_Layer: 5
   m_Name: IPCanvas
@@ -10253,7 +10250,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283695126}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.003, y: 0.003, z: 0.003}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -10265,11 +10262,11 @@ RectTransform:
   - {fileID: 1486070180}
   - {fileID: 2002945888}
   - {fileID: 276945300}
-  m_Father: {fileID: 311500302}
+  m_Father: {fileID: 1594077526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1.6}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1283695128
@@ -10330,33 +10327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf871a0ca6ef474ea1369b792a9b58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1283695131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1283695126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a2d7d89889b4d94fa1f8d6fe49788e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Target: {fileID: 0}
-  m_TargetOffset: {x: 0, y: 0, z: 1.5}
-  m_FollowInLocalSpace: 0
-  m_ApplyTargetInLocalSpace: 0
-  m_MovementSpeed: 200
-  m_MovementSpeedVariancePercentage: 0
-  m_SnapOnEnable: 1
-  m_PositionFollowMode: 1
-  m_MinDistanceAllowed: 0.06
-  m_MaxDistanceAllowed: 0.02
-  m_TimeUntilThresholdReachesMaxDistance: 1
-  m_RotationFollowMode: 2
-  m_MinAngleAllowed: 0.1
-  m_MaxAngleAllowed: 5
-  m_TimeUntilThresholdReachesMaxAngle: 3
 --- !u!1001 &1324315945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11255,7 +11225,6 @@ GameObject:
   - component: {fileID: 1376077959}
   - component: {fileID: 1376077962}
   - component: {fileID: 1376077961}
-  - component: {fileID: 1376077960}
   m_Layer: 5
   m_Name: PositionCanvas
   m_TagString: Untagged
@@ -11271,7 +11240,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376077958}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.003, y: 0.003, z: 0.003}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -11282,40 +11251,13 @@ RectTransform:
   - {fileID: 695485107}
   - {fileID: 1629909108}
   - {fileID: 892147057}
-  m_Father: {fileID: 311500302}
+  m_Father: {fileID: 1594077526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1.6}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1376077960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376077958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a2d7d89889b4d94fa1f8d6fe49788e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Target: {fileID: 0}
-  m_TargetOffset: {x: 0, y: 0, z: 1.5}
-  m_FollowInLocalSpace: 0
-  m_ApplyTargetInLocalSpace: 0
-  m_MovementSpeed: 200
-  m_MovementSpeedVariancePercentage: 0
-  m_SnapOnEnable: 1
-  m_PositionFollowMode: 1
-  m_MinDistanceAllowed: 0.06
-  m_MaxDistanceAllowed: 0.02
-  m_TimeUntilThresholdReachesMaxDistance: 1
-  m_RotationFollowMode: 2
-  m_MinAngleAllowed: 0.1
-  m_MaxAngleAllowed: 5
-  m_TimeUntilThresholdReachesMaxAngle: 3
 --- !u!114 &1376077961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13087,8 +13029,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1064995528}
   - {fileID: 626001462}
@@ -13097,6 +13039,8 @@ Transform:
   - {fileID: 428211609}
   - {fileID: 1669626311}
   - {fileID: 1705361405}
+  - {fileID: 1283695127}
+  - {fileID: 1376077959}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1629909108 stripped
