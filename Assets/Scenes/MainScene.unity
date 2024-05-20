@@ -2956,8 +2956,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a2d8120c93201f48bb37087d67919d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  switchEVAText: {fileID: 1036222730}
-  evaNumber: 1
+  worldPin: {fileID: 0}
+  allPins: []
 --- !u!4 &374539557 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2351505566771328526, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
@@ -8081,11 +8081,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909915072}
   m_CullTransparentMesh: 1
---- !u!1 &914455087 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2351505566903569413, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
-  m_PrefabInstance: {fileID: 374539549}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &937583437
 GameObject:
   m_ObjectHideFlags: 0
@@ -8752,17 +8747,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6b351a67ceb69140b199996bbbea156, type: 3}
---- !u!114 &1036222730 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1922220768106560367, guid: c6b351a67ceb69140b199996bbbea156, type: 3}
-  m_PrefabInstance: {fileID: 1036222729}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1036222731 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8376646494505211229, guid: c6b351a67ceb69140b199996bbbea156, type: 3}
@@ -12862,6 +12846,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1530211986}
   m_CullTransparentMesh: 1
+--- !u!1 &1530350098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1530350100}
+  - component: {fileID: 1530350099}
+  m_Layer: 0
+  m_Name: VoiceSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1530350099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530350098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9352e2fd0167784a962fec8536320a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  warningSystemScript: {fileID: 0}
+  telemetryScript: {fileID: 0}
+  criticalTelemetryScript: {fileID: 0}
+  compassCanvas: {fileID: 0}
+  geoCanvas: {fileID: 0}
+--- !u!4 &1530350100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530350098}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1555175808 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1947121577341454504, guid: 506cbd034c7d76f45b0ef11fe23b8e53, type: 3}
@@ -13213,12 +13246,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectionHandler: {fileID: 1183467018}
-  pinsHolder: {fileID: 1503165004}
   lmccWorldPin: {fileID: 3627275342200852551, guid: fb56f31fb811b884fb827152d75dca8f, type: 3}
-  lmccWorldBreadcrumb: {fileID: 3627275342200852551, guid: 8d15770269b38e84ca1a0449f385faba, type: 3}
-  lmccRover: {fileID: 3627275342200852551, guid: 69083a5d50af84f4cb4a2a65d6dede20, type: 3}
-  lmccEVA: {fileID: 3627275342200852551, guid: 6ef3e1d36a187a641a3bd02626c01365, type: 3}
-  importantMarkers: []
+  hmdWorldPin: {fileID: 0}
   lmccPins: []
   pinLatCoords: []
   pinLongCoords: []
@@ -13910,6 +13939,7 @@ MonoBehaviour:
   bpmText: {fileID: 1926950362}
   battLife: {fileID: 558389387}
   oxyTime: {fileID: 511245754}
+  criticalTelemetryCanvas: {fileID: 0}
   connection: {fileID: 1183467018}
   apiCallTimeInterval: 0.1
 --- !u!4 &1705361405
@@ -17500,9 +17530,6 @@ MonoBehaviour:
   connectionHandler: {fileID: 1183467018}
   setIPText: {fileID: 1096082246}
   currentIPText: {fileID: 276945301}
-  cameraOffset: {fileID: 914455087}
-  xPosText: {fileID: 1348316588}
-  zPosText: {fileID: 775327585}
 --- !u!1 &2086355215
 GameObject:
   m_ObjectHideFlags: 0
@@ -18232,3 +18259,4 @@ SceneRoots:
   - {fileID: 1669626311}
   - {fileID: 1705361405}
   - {fileID: 1503165004}
+  - {fileID: 1530350100}
