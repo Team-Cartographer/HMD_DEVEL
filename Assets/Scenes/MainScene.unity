@@ -9798,22 +9798,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf643b5d8672154a90573620403c116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TitlePanel: {fileID: 0}
-  TitleButton: {fileID: 0}
-  HPTitle: {fileID: 0}
-  MenuPanel: {fileID: 0}
-  EgressButtonText: {fileID: 0}
-  GeoButtonText: {fileID: 0}
-  GeoButton: {fileID: 0}
-  RepairButtonText: {fileID: 0}
-  IngressButtonText: {fileID: 0}
-  BackMenuButtonText: {fileID: 0}
-  ProcedurePanel: {fileID: 0}
-  PreviousButtonText: {fileID: 0}
-  ExitButtonText: {fileID: 0}
-  NextButtonText: {fileID: 0}
-  NextButton: {fileID: 0}
-  ProcedureText: {fileID: 0}
+  mainPanel: {fileID: 1903777128}
+  proceduresButton: {fileID: 420635215}
+  menuPanel: {fileID: 1835013674}
+  egressButton: {fileID: 560447593}
+  geoButton: {fileID: 341312208}
+  repairButton: {fileID: 1241843801}
+  ingressButton: {fileID: 1982139507}
+  emergencyButton: {fileID: 1800757852}
+  backButton: {fileID: 534762632}
+  procedurePanel: {fileID: 1204610171}
+  procedureText: {fileID: 373767541}
+  exitButton: {fileID: 806305405}
+  nextButton: {fileID: 1092520171}
+  previousButton: {fileID: 1106261244}
+  emergencyPanel: {fileID: 240394969}
+  o2ErrorButton: {fileID: 1674061854}
+  fanErrorButton: {fileID: 958674423}
+  abortMission: {fileID: 134862252}
 --- !u!114 &838772407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13051,22 +13053,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf643b5d8672154a90573620403c116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TitlePanel: {fileID: 0}
-  TitleButton: {fileID: 0}
-  HPTitle: {fileID: 0}
-  MenuPanel: {fileID: 0}
-  EgressButtonText: {fileID: 0}
-  GeoButtonText: {fileID: 0}
-  GeoButton: {fileID: 0}
-  RepairButtonText: {fileID: 0}
-  IngressButtonText: {fileID: 0}
-  BackMenuButtonText: {fileID: 0}
-  ProcedurePanel: {fileID: 0}
-  PreviousButtonText: {fileID: 0}
-  ExitButtonText: {fileID: 0}
-  NextButtonText: {fileID: 0}
-  NextButton: {fileID: 0}
-  ProcedureText: {fileID: 0}
+  mainPanel: {fileID: 0}
+  proceduresButton: {fileID: 0}
+  menuPanel: {fileID: 0}
+  egressButton: {fileID: 0}
+  geoButton: {fileID: 0}
+  repairButton: {fileID: 0}
+  ingressButton: {fileID: 0}
+  emergencyButton: {fileID: 0}
+  backButton: {fileID: 0}
+  procedurePanel: {fileID: 0}
+  procedureText: {fileID: 0}
+  exitButton: {fileID: 0}
+  nextButton: {fileID: 0}
+  previousButton: {fileID: 0}
+  emergencyPanel: {fileID: 0}
+  o2ErrorButton: {fileID: 0}
+  fanErrorButton: {fileID: 0}
+  abortMission: {fileID: 0}
 --- !u!4 &1182389204
 Transform:
   m_ObjectHideFlags: 0
@@ -15967,7 +15971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 431aeabd4b07ed441b09053d95ae187e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 374539550}
   modelAsset: {fileID: 5022602860645237092, guid: 6d98245f81d6c7e42a5b37468e74ecb7, type: 3}
   textCanvas: {fileID: 791290905}
   isEnabled: 0

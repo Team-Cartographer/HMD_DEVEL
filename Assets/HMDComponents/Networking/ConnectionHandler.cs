@@ -10,7 +10,7 @@ public class ConnectionHandler : MonoBehaviour
 
     void Start()
     {
-        if (PlayerPrefs.GetString("CurrentIP") == null) PlayerPrefs.SetString("CurrentIP", "172.20.3.66");
+        if (PlayerPrefs.GetString("CurrentIP") == "") PlayerPrefs.SetString("CurrentIP", "172.20.3.66");
         GatewayConnection.ConnectToHost(PlayerPrefs.GetString("CurrentIP"), 3001);
     }
 
