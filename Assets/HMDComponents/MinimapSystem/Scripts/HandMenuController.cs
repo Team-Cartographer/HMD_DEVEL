@@ -23,6 +23,9 @@ public class HandMenuController : MonoBehaviour // basic scene managing script
     [Header("Toggle Telemtry Display")]
     [SerializeField] GameObject telemetryCanvas;
 
+    [Header("Toggle Geosammple Display")]
+    [SerializeField] GameObject geosample;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -109,5 +112,9 @@ public class HandMenuController : MonoBehaviour // basic scene managing script
     public void ToggleTelemetry()
     {
         telemetryCanvas.SetActive(!telemetryCanvas.activeSelf);
+    }
+    public void ToggleGeosample()
+    {
+        geosample.SetActive(!geosample.activeSelf);
     }
 }
