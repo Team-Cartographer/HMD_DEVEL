@@ -5,6 +5,9 @@ using TMPro;
 
 public class HandMenuController : MonoBehaviour // basic scene managing script
 {
+
+    
+
     [SerializeField] ConnectionHandler connectionHandler;
 
     [Header("IP Config")]
@@ -16,6 +19,12 @@ public class HandMenuController : MonoBehaviour // basic scene managing script
     [SerializeField] TMP_Text xPosText;
     [SerializeField] TMP_Text zPosText;
     TMP_Text currentPosText;
+
+    [Header("Toggle Telemtry Display")]
+    [SerializeField] GameObject telemetryCanvas;
+
+    [Header("Toggle Geosammple Display")]
+    [SerializeField] GameObject geosample;
 
     // Start is called before the first frame update
     void Start()
@@ -98,5 +107,14 @@ public class HandMenuController : MonoBehaviour // basic scene managing script
         float newX = newPos.x - currentCameraPos.x + cameraOffset.transform.position.x;
         float newZ = newPos.z - currentCameraPos.z + cameraOffset.transform.position.z;
         cameraOffset.transform.position = new Vector3(newX, cameraOffset.transform.position.y, newZ);
+    }
+
+    public void ToggleTelemetry()
+    {
+        telemetryCanvas.SetActive(!telemetryCanvas.activeSelf);
+    }
+    public void ToggleGeosample()
+    {
+        geosample.SetActive(!geosample.activeSelf);
     }
 }

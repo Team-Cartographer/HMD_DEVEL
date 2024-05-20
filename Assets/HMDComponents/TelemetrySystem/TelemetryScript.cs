@@ -75,6 +75,7 @@ public class TelemetryScript : MonoBehaviour
 
 
         // displaying
+        /*
         if (Input.GetKeyDown(KeyCode.X))  // Change to hand commands
         {
             telemetryCanvas.gameObject.SetActive(!telemetryCanvas.gameObject.activeSelf);
@@ -101,7 +102,7 @@ public class TelemetryScript : MonoBehaviour
                 telemetryBody.text = ConvertToString(eva1);
             }
 
-        }
+        }*/
     }
 
     public void OpenTelemetry()

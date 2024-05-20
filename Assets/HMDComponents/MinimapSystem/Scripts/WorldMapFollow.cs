@@ -12,9 +12,9 @@ public class WorldMapFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lazyFollow = GetComponent<LazyFollow>();
-        isInCourotine = false;
-        if (!isInCourotine) StartCoroutine(RotateToPlayerThenFixPos());
+        //lazyFollow = GetComponent<LazyFollow>();
+        //isInCourotine = false;
+        //if (!isInCourotine) StartCoroutine(RotateToPlayerThenFixPos());
     }
 
     // Update is called once per frame
@@ -25,9 +25,9 @@ public class WorldMapFollow : MonoBehaviour
 
     void OnEnable() 
     {
-        lazyFollow = GetComponent<LazyFollow>();
-        isInCourotine = false;
-        if (!isInCourotine) StartCoroutine(RotateToPlayerThenFixPos());
+        //lazyFollow = GetComponent<LazyFollow>();
+        //isInCourotine = false;
+        //if (!isInCourotine) StartCoroutine(RotateToPlayerThenFixPos());
     }
 
     IEnumerator RotateToPlayerThenFixPos()
