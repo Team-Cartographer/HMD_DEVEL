@@ -9,6 +9,7 @@ public class voiceScript : MonoBehaviour
     public WarningSystemScript warningSystemScript;
     public TelemetryScript telemetryScript;
     public CriticalTelemetry criticalTelemetryScript; // we should rename critical telemetry to critical telemetry script
+    public FlareDetection flareDetectionScript;
 
     // Canvas imports
     public Canvas compassCanvas;
@@ -41,7 +42,10 @@ public class voiceScript : MonoBehaviour
             "compass on", "compass off",
 
             // geo sampling
-            "geo on", "geo off"
+            "geo on", "geo off",
+
+            // flare detection
+            "flare detection on", "flare detection on"
 
         });
 
@@ -163,6 +167,15 @@ public class voiceScript : MonoBehaviour
         else if (args.text == "geo off")
         {
             geoCanvas.gameObject.SetActive(false);
+        }
+        // flare detection
+        else if (args.text == "flare detection on")
+        {
+            flareDetectionScript.Enable();
+        }
+        else if (args.text == "flare detection off")
+        {
+            flareDetectionScript.Disable();
         }
     }
 }

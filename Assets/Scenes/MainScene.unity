@@ -13058,9 +13058,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9352e2fd0167784a962fec8536320a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  warningSystemScript: {fileID: 0}
+  warningSystemScript: {fileID: 2008639533}
   telemetryScript: {fileID: 0}
-  criticalTelemetryScript: {fileID: 0}
+  criticalTelemetryScript: {fileID: 1705361404}
+  flareDetectionScript: {fileID: 719918276}
   compassCanvas: {fileID: 0}
   geoCanvas: {fileID: 0}
 --- !u!4 &1530350100

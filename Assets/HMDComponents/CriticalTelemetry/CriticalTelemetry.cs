@@ -51,7 +51,7 @@ public class CriticalTelemetry : MonoBehaviour
         string telem = conn.GetTELEMETRYJsonString();
         if (string.IsNullOrEmpty(telem))
         {
-            Debug.LogError("Telemetry data is empty or null.");
+            //Debug.LogError("Telemetry data is empty or null.");
         }
         else 
         {

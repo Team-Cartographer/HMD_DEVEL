@@ -9,7 +9,7 @@ using Unity.Barracuda;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class FlareRemoval : MonoBehaviour
+public class FlareDetection : MonoBehaviour
 {
     // Start is called before the first frame update
     public Camera mainCamera;
@@ -79,5 +79,15 @@ public class FlareRemoval : MonoBehaviour
     {
         float ex = Mathf.Exp(x);
         return ex / (ex + Mathf.Exp(y));
+    }
+
+    public void Enable()
+    {
+        isEnabled = true;
+    }
+
+    public void Disable() 
+    { 
+        isEnabled = false; 
     }
 }
