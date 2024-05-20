@@ -30,11 +30,11 @@ public class Compass : MonoBehaviour
             JObject jo = JObject.Parse(IMUstring);
             float tssHeading = jo["imu"]["eva1"]["heading"].ToObject<float>();
 
-            cameraOffset = cameraYaw - tssHeading;
+            cameraOffset = tssHeading - cameraYaw;
         }
         
         // Update with tss server/prevent desync
-        cameraYaw -= cameraOffset;
+        cameraYaw += cameraOffset;
 
         // Rotate image
         CompassImage.uvRect = new Rect(cameraYaw / 360, 0, 1, 1);
