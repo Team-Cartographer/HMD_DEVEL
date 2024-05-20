@@ -5,13 +5,6 @@ using Newtonsoft.Json.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System.Collections.Generic;
-using System.Reflection.Emit;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.PackageManager.UI;
-using UnityEngine.InputSystem;
-using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.UI;
 
 public class ProcedureScript : MonoBehaviour
@@ -24,7 +17,7 @@ public class ProcedureScript : MonoBehaviour
     public GameObject MenuPanel;
     public TMP_Text EgressButtonText;
     public TMP_Text GeoButtonText;
-    public PressableButton GeoButton;
+    public Button GeoButton;
     public TMP_Text RepairButtonText;
     public TMP_Text IngressButtonText;
     public TMP_Text BackMenuButtonText;
