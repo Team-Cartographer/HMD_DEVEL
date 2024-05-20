@@ -75,7 +75,7 @@ public class CriticalTelemetry : MonoBehaviour
     void UpdateBPM(JObject jo)
     {
         bpmText.text = "BPM: ";
-        float bpm1 = jo["telemetry"]["eva1"]["heart_rate"].ToObject<float>();
+        float bpm1 = jo["telemetry"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["heart_rate"].ToObject<float>();
         bpmText.text += bpm1;
 
         bpmText.color = (bpm1 > 160 || bpm1 < 50) ? Color.red : Color.green;
@@ -84,7 +84,7 @@ public class CriticalTelemetry : MonoBehaviour
     void UpdateBatteryLife(JObject jo)
     {
         battLife.text = "Remaining Battery Time: ";
-        float batlife = jo["telemetry"]["eva1"]["batt_time_left"].ToObject<float>();
+        float batlife = jo["telemetry"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["batt_time_left"].ToObject<float>();
 
         battLife.color = batlife < 3600 ? Color.red : Color.green;
 
@@ -100,7 +100,7 @@ public class CriticalTelemetry : MonoBehaviour
     void UpdateOxygenTime(JObject jo)
     {
         oxyTime.text = "Remaining Oxygen Time: ";
-        float oxytime = jo["telemetry"]["eva1"]["oxy_time_left"].ToObject<float>();
+        float oxytime = jo["telemetry"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["oxy_time_left"].ToObject<float>();
 
         oxyTime.color = oxytime < 3600 ? Color.red : Color.green;
 

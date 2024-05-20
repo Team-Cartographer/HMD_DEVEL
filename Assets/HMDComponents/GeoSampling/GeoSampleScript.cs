@@ -29,7 +29,7 @@ public class GeoSampleScript : MonoBehaviour
                 string spec = conn.GetSPECJsonString();
                 JObject jo = JObject.Parse(spec);
 
-                float id1 = jo["spec"]["eva1"]["id"].ToObject<float>();
+                float id1 = jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["id"].ToObject<float>();
                 float id2 = jo["spec"]["eva2"]["id"].ToObject<float>();
                 string text = "";
                 if (id1 != 0 && id1 != prevID)
@@ -41,17 +41,17 @@ public class GeoSampleScript : MonoBehaviour
                     
                     // text += $"ID: {id1}\n";
 
-                    if (jo != null && jo["spec"] != null && jo["spec"]["eva1"] != null && jo["spec"]["eva1"]["data"] != null &&
-                        (jo["spec"]["eva1"]["data"]["Al2O3"] != null && jo["spec"]["eva1"]["data"]["Al2O3"].ToObject<float>() > 10 ||
-                        (jo["spec"]["eva1"]["data"]["SiO2"] != null && jo["spec"]["eva1"]["data"]["SiO2"].ToObject<float>() < 10) ||
-                        (jo["spec"]["eva1"]["data"]["TiO2"] != null && jo["spec"]["eva1"]["data"]["TiO2"].ToObject<float>() > 1) ||
-                        (jo["spec"]["eva1"]["data"]["FeO"] != null && jo["spec"]["eva1"]["data"]["FeO"].ToObject<float>() > 29) ||
-                        (jo["spec"]["eva1"]["data"]["MnO"] != null && jo["spec"]["eva1"]["data"]["MnO"].ToObject<float>() > 1) ||
-                        (jo["spec"]["eva1"]["data"]["MgO"] != null && jo["spec"]["eva1"]["data"]["MgO"].ToObject<float>() > 20) ||
-                        (jo["spec"]["eva1"]["data"]["CaO"] != null && jo["spec"]["eva1"]["data"]["CaO"].ToObject<float>() > 10) ||
-                        (jo["spec"]["eva1"]["data"]["K2O"] != null && jo["spec"]["eva1"]["data"]["K2O"].ToObject<float>() > 1) ||
-                        (jo["spec"]["eva1"]["data"]["P2O5"] != null && jo["spec"]["eva1"]["data"]["P2O5"].ToObject<float>() > 1.5) ||
-                        (jo["spec"]["eva1"]["data"]["other"] != null && jo["spec"]["eva1"]["data"]["other"].ToObject<float>() > 50)))
+                    if (jo != null && jo["spec"] != null && jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"] != null && jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"] != null &&
+                        (jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["Al2O3"] != null && jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["Al2O3"].ToObject<float>() > 10 ||
+                        (jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["SiO2"] != null && jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["SiO2"].ToObject<float>() < 10) ||
+                        (jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["TiO2"] != null && jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["TiO2"].ToObject<float>() > 1) ||
+                        (jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["FeO"] != null && jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["FeO"].ToObject<float>() > 29) ||
+                        (jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["MnO"] != null && jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["MnO"].ToObject<float>() > 1) ||
+                        (jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["MgO"] != null && jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["MgO"].ToObject<float>() > 20) ||
+                        (jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["CaO"] != null && jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["CaO"].ToObject<float>() > 10) ||
+                        (jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["K2O"] != null && jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["K2O"].ToObject<float>() > 1) ||
+                        (jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["P2O5"] != null && jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["P2O5"].ToObject<float>() > 1.5) ||
+                        (jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["other"] != null && jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"]["other"].ToObject<float>() > 50)))
                     {
                         text += "Sample Significant\n";
                         geoText.color = Color.green;
@@ -64,7 +64,7 @@ public class GeoSampleScript : MonoBehaviour
 
                     text += "Sample contents:\n";
 
-                    foreach (var pair in jo["spec"]["eva1"]["data"].ToObject<JObject>())
+                    foreach (var pair in jo["spec"][$"eva{ FindObjectOfType<EVAController>().GetEVANumber() }"]["data"].ToObject<JObject>())
                     {
                         text += $"{pair.Key}: {pair.Value}\n";
                         //Debug.Log(pair.Key);
