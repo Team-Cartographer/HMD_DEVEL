@@ -32,7 +32,12 @@ public class LMCCPinsController : MonoBehaviour
     [SerializeField] List<double> pinLongCoords;
     [SerializeField] List<GameObject> worldLMCCPins;
 
-    readonly int[] mapCenterUTM15 = { 1875, 1760 }; // x: 225 (left) - 3490 (right), y: 3290 (bottom) - 225 (top)
+    // x: 225 (left) - 3490 (right), y: 3290 (bottom) - 225 (top)
+    readonly int[] mapCenterImageResolution = { 1875, 1760 };
+
+    // x (api utm [1]): 3272440 (left) - 3272326 (right), ~116 m; y (api utm [0]): 298400 (bottom) - 298304 (top), ~96 m
+    readonly int[] mapCenterUTM_yx = { 298352, 3272383 }; // IMPORTANT: just like with pulled coords y is left and x is right
+
     readonly double[] mapCenterLatLon = { 29.564882056524166, -95.081497230282139 };
     readonly double[] latLongToMeter = { 110836.0, 97439.0 };
 
@@ -42,7 +47,7 @@ public class LMCCPinsController : MonoBehaviour
         gatewayConnection = connectionHandler.GetConnection();
         hmdPinsSync = GetComponent<HMDPinsSync>();
         hmdPinsSync.SetGatewayConnection(gatewayConnection);
-        hmdPinsSync.SetMapCenter(mapCenterUTM15);
+        hmdPinsSync.SetMapCenter(mapCenterImageResolution);
     }
 
     // Update is called once per frame
@@ -73,10 +78,10 @@ public class LMCCPinsController : MonoBehaviour
         else pin.worldPin.transform.position = worldPos;
     }
 
-    public double[] CenterUTMCoords(double[] lmccPinCoords)
+    public double[] CenterUTMCoords(double[] lmccPinCoords) // reverse if messed up positions
     {
-        double xPos = lmccPinCoords[0] - (double) mapCenterUTM15[0];
-        double zPos = mapCenterUTM15[1] - (double) lmccPinCoords[1];
+        double xPos = (double)mapCenterUTM_yx[1] - lmccPinCoords[0]; 
+        double zPos = mapCenterUTM_yx[0] - (double) lmccPinCoords[1];
         double[] convertedPosition = { xPos, zPos };
         return convertedPosition;
     }
@@ -94,8 +99,10 @@ public class LMCCPinsController : MonoBehaviour
         {
             string name = (string)feature["name"];
             string description = (string)feature["description"];
-            string[] coordinates = description.Split('x');
-            double[] coords = { double.Parse(coordinates[0]), double.Parse(coordinates[1]) };
+            //string[] coordinates = description.Split('x'); 
+            //double[] coords = { double.Parse(coordinates[0]), double.Parse(coordinates[1]) };
+            JArray coordinates = (JArray)feature["utm"];
+            double[] coords = { (double)coordinates[1], (double)coordinates[0] }; // reverse if messed up positions
             retrievedLatCoords.Add(coords[0]);
             retrievedLongCoords.Add(coords[1]);
             LMCCPin newPin = null;
@@ -103,7 +110,7 @@ public class LMCCPinsController : MonoBehaviour
             {
                 if (importantMarkers.Count < 3)
                 {
-                    newPin = new LMCCPin(name, coords);
+                    newPin = new LMCCPin(name, coords, description);
                     bool isEVA = newPin.name == "EVA 1" || newPin.name == "EVA 2";
                     bool isRover = newPin.name == "Rover";
                     char option = isRover ? 'r' : 'e';
@@ -112,7 +119,6 @@ public class LMCCPinsController : MonoBehaviour
                 }
                 else
                 {
-                    newPin = null;
                     foreach(LMCCPin p in importantMarkers) if (p.name == name) newPin = p;
                     newPin.coordinates = coords;
                     char option = newPin.name == "Rover" ? 'r' : 'e';
@@ -123,7 +129,7 @@ public class LMCCPinsController : MonoBehaviour
             {
                 pinLatCoords.Add(coords[0]);
                 pinLongCoords.Add(coords[1]);
-                newPin = new LMCCPin(name, coords);
+                newPin = new LMCCPin(name, coords, description);
                 bool isBreadcrumb = newPin.name == "EVA 1 Cache Point" || newPin.name == "EVA 2 Cache Point" || newPin.name == "Rover Cache Point";
                 char option = isBreadcrumb ? 'b' : 'p';
                 UpdatePinOnField(newPin, option);
@@ -160,11 +166,13 @@ public class LMCCPinsController : MonoBehaviour
 public class LMCCPin
 {
     public string name;
+    public string description;
     public double[] coordinates;
     public GameObject worldPin = null;
-    public LMCCPin(string n, double[] c)
+    public LMCCPin(string n, double[] c, string d)
     {
         name = n;
         coordinates = c;
+        description = d;
     }
 }
