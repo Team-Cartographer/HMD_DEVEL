@@ -61,10 +61,12 @@ public class EVAController : MonoBehaviour
         yield return new WaitForSecondsRealtime(5);
         string jsonData = gatewayConnection.GetIMUJsonString();
         Debug.Log("imu: " + jsonData);
-        JObject pinsJson = JObject.Parse(jsonData);
-        double xPos = (double)pinsJson["imu"]["eva"+evaNumber]["posy"];
-        double yPos = (double)pinsJson["imu"]["eva"+evaNumber]["posx"];
+        JObject imuJson = JObject.Parse(jsonData);
+        double xPos = (double)imuJson["imu"]["eva"+evaNumber]["posy"];
+        double yPos = (double)imuJson["imu"]["eva"+evaNumber]["posx"];
+        double rotation = (double)imuJson["imu"]["eva" + evaNumber]["heading"];
         double[] center = { pinsController.GetMapCenterUTM_yx()[1], pinsController.GetMapCenterUTM_yx()[0] }; // x, y
         handMenuController.SetUserPosition(new Vector3((float)(center[0] - xPos), 0, (float)(center[1] - yPos)));
+        handMenuController.SetUserRotation(new Vector3(0, (float) rotation, 0));
     }
 }

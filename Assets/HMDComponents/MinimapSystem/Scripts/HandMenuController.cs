@@ -112,6 +112,13 @@ public class HandMenuController : MonoBehaviour // basic scene managing script
         cameraOffset.transform.position = new Vector3(newX, cameraOffset.transform.position.y, newZ);
     }
 
+    public void SetUserRotation(Vector3 newRot)
+    {
+        Vector3 currentCameraRot = Camera.main.transform.eulerAngles;
+        float newRotationY = newRot.y - currentCameraRot.y + cameraOffset.transform.eulerAngles.y;
+        cameraOffset.transform.eulerAngles = new Vector3(cameraOffset.transform.eulerAngles.x, newRotationY, cameraOffset.transform.eulerAngles.z);
+    }
+
     public void ToggleTelemetry()
     {
         telemetryCanvas.SetActive(!telemetryCanvas.activeSelf);
