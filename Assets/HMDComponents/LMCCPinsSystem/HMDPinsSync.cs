@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using UnityEngine.Networking;
 using System.Runtime.CompilerServices;
 using System;
+using Newtonsoft.Json.Linq;
 
 public class HMDPinsSync : MonoBehaviour
 {
@@ -29,7 +30,29 @@ public class HMDPinsSync : MonoBehaviour
     public void AddHMDPin(Vector3 position)
     {
         Debug.Log("attempting to add pin");
-        int[] coords = ConvertUnityToUTMCoords(position);
+        JArray geoJsonFeatures = (JArray)JObject.Parse(gatewayConnection.GetGEOJSONHMDJsonString())["features"]; 
+        int evaNum = FindObjectOfType<EVAController>().GetEVANumber();
+
+        // find the entry in the geoJson with the "properties"["name"] == "EVA 1"
+        // then the description, UTM, and lat lon are all given to you, just add a new point at those given values
+        // and its done 
+
+        string desc = "0x0";
+        double[] coords = { 0, 0 };
+        double[] latloncoords = { 0, 0 };
+        foreach (JObject jO in geoJsonFeatures)
+        {
+            if ((string)jO["name"] == "EVA " + evaNum)
+            {
+                desc = (string) jO["description"];
+                JArray utm = (JArray)jO["utm"];
+                coords = new double[] { (double)utm[0], (double)utm[1] };
+                JArray latlon = (JArray)jO["latlon"];
+                latloncoords = new double[] { (double)latlon[0], (double)latlon[1] };
+                break;
+            }
+        }
+
         var data = new
         {
             feature = new
@@ -38,13 +61,13 @@ public class HMDPinsSync : MonoBehaviour
                 geometry = new
                 {
                     type = "Point",
-                    coordinates = new int[]{ coords[0], coords[1] }
+                    coordinates = new double[]{ latloncoords[0], latloncoords[1] }
                 },
                 properties = new
                 {
                     name = "HMDPoint",
-                    description = coords[0] + "x" + coords[1],
-                    utm = new float[] { 0.0f, 0.0f }
+                    description = desc,
+                    utm = new double[] { coords[0], coords[1] }
                 }
             }
         };
@@ -55,7 +78,7 @@ public class HMDPinsSync : MonoBehaviour
 
     public void RemovePin(Vector3 position, string pinName)
     {
-        int[] coords = ConvertUnityToUTMCoords(position);
+        /*int[] coords = ConvertUnityToUTMCoords(position);
         Debug.Log("attempting to remove pin");
         var data = new
         {
@@ -77,7 +100,7 @@ public class HMDPinsSync : MonoBehaviour
         };
         string jsonData = JsonConvert.SerializeObject(data);
 
-        StartCoroutine(gatewayConnection.PostRequest("removefeature", jsonData));
+        StartCoroutine(gatewayConnection.PostRequest("removefeature", jsonData));*/
     }
 
     int[] ConvertUnityToUTMCoords(Vector3 position)

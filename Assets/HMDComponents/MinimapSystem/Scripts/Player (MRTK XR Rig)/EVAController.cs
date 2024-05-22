@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 
 public class EVAController : MonoBehaviour
 {
+    [SerializeField] GameObject cameraOffset;
     [SerializeField] TMP_Text switchEVAText;
     [SerializeField] ConnectionHandler connectionHandler;
     GatewayConnection gatewayConnection;
@@ -46,7 +47,8 @@ public class EVAController : MonoBehaviour
 
     public void PlacePin()
     {
-        FindAnyObjectByType<HMDPinsSync>().AddHMDPin(Camera.main.transform.position);
+        Vector3 pos = Camera.main.transform.position + cameraOffset.transform.position;
+        FindAnyObjectByType<HMDPinsSync>().AddHMDPin(pos);
     }
     public int GetEVANumber() {  return evaNumber; }
     public void SwitchEVANumber()
@@ -61,10 +63,12 @@ public class EVAController : MonoBehaviour
         yield return new WaitForSecondsRealtime(5);
         string jsonData = gatewayConnection.GetIMUJsonString();
         Debug.Log("imu: " + jsonData);
-        JObject pinsJson = JObject.Parse(jsonData);
-        double xPos = (double)pinsJson["imu"]["eva"+evaNumber]["posy"];
-        double yPos = (double)pinsJson["imu"]["eva"+evaNumber]["posx"];
+        JObject imuJson = JObject.Parse(jsonData);
+        double xPos = (double)imuJson["imu"]["eva"+evaNumber]["posy"];
+        double yPos = (double)imuJson["imu"]["eva"+evaNumber]["posx"];
+        double rotation = (double)imuJson["imu"]["eva" + evaNumber]["heading"];
         double[] center = { pinsController.GetMapCenterUTM_yx()[1], pinsController.GetMapCenterUTM_yx()[0] }; // x, y
         handMenuController.SetUserPosition(new Vector3((float)(center[0] - xPos), 0, (float)(center[1] - yPos)));
+        handMenuController.SetUserRotation(new Vector3(0, (float) rotation, 0));
     }
 }

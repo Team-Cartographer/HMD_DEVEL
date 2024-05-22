@@ -1,15 +1,8 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Hardware;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
-using UnityEngine.InputSystem;
-using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using static UnityEditor.PlayerSettings;
 
 public class HardProcedures : MonoBehaviour
 {

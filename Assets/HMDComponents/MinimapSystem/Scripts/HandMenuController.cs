@@ -26,6 +26,9 @@ public class HandMenuController : MonoBehaviour // basic scene managing script
     [Header("Toggle Geosammple Display")]
     [SerializeField] GameObject geosample;
 
+    [Header("Toggle Flare Detection")]
+    [SerializeField] GameObject resetRotationButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -109,6 +112,19 @@ public class HandMenuController : MonoBehaviour // basic scene managing script
         cameraOffset.transform.position = new Vector3(newX, cameraOffset.transform.position.y, newZ);
     }
 
+    public void SetUserRotation(Vector3 newRot)
+    {
+        Vector3 currentCameraRot = Camera.main.transform.eulerAngles;
+        float newRotationY = newRot.y - currentCameraRot.y + cameraOffset.transform.eulerAngles.y;
+        cameraOffset.transform.eulerAngles = new Vector3(cameraOffset.transform.eulerAngles.x, newRotationY, cameraOffset.transform.eulerAngles.z);
+    }
+    public void SetUserRotation(float newRot)
+    {
+        Vector3 currentCameraRot = Camera.main.transform.eulerAngles;
+        float newRotationY = newRot - currentCameraRot.y + cameraOffset.transform.eulerAngles.y;
+        cameraOffset.transform.eulerAngles = new Vector3(cameraOffset.transform.eulerAngles.x, newRotationY, cameraOffset.transform.eulerAngles.z);
+    }
+
     public void ToggleTelemetry()
     {
         telemetryCanvas.SetActive(!telemetryCanvas.activeSelf);
@@ -116,5 +132,10 @@ public class HandMenuController : MonoBehaviour // basic scene managing script
     public void ToggleGeosample()
     {
         geosample.SetActive(!geosample.activeSelf);
+    }
+
+    public void ToggleRotationReset()
+    {
+        resetRotationButton.SetActive(!resetRotationButton.activeSelf);
     }
 }

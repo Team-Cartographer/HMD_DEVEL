@@ -27,12 +27,12 @@ public class Compass : MonoBehaviour
 
         if (Time.time - lastTime > 1) 
         {
-            lastTime = Time.time;
+            lastTime = Time.deltaTime;
             string IMUstring = conn.GetIMUJsonString();
 
             // Load IMU data into map
             JObject jo = JObject.Parse(IMUstring);
-            float tssHeading = jo["imu"]["eva1"]["heading"].ToObject<float>();
+            float tssHeading = jo["imu"]["eva"+FindObjectOfType<EVAController>().GetEVANumber()]["heading"].ToObject<float>();
             cameraOffset = tssHeading - cameraYaw;
             //Debug.Log(cameraOffset);
         }

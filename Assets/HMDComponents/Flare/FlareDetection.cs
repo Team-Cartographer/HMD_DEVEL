@@ -14,9 +14,9 @@ public class FlareRemoval : MonoBehaviour
     // Start is called before the first frame update
     public Camera mainCamera;
     public NNModel modelAsset;
-    public Canvas textCanvas;
+    public Canvas flareCanvas;
 
-    public bool isEnabled;
+    public bool isFlareEnabled;
 
     float lastTime;
 
@@ -36,10 +36,10 @@ public class FlareRemoval : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - lastTime < 3 || !isEnabled) { return; }
+        if (Time.time - lastTime < 3 || !isFlareEnabled) { return; }
 
         
-        lastTime = Time.time;
+        lastTime = Time.deltaTime;
 
         Rect rect = new Rect(0, 0, mainCamera.pixelWidth, mainCamera.pixelHeight);
         RenderTexture renderTexture = new RenderTexture(mainCamera.pixelWidth, mainCamera.pixelHeight, 24);
@@ -68,11 +68,11 @@ public class FlareRemoval : MonoBehaviour
         
         if (flare >= 0.6)
         {
-            textCanvas.enabled = true;
+            flareCanvas.enabled = false;
         }
         else
         {
-            textCanvas.enabled = false;
+            flareCanvas.enabled = false;
         }
     }
     float softmax(float x, float y)
