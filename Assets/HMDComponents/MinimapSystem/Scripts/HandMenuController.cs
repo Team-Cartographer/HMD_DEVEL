@@ -27,7 +27,7 @@ public class HandMenuController : MonoBehaviour // basic scene managing script
     [SerializeField] GameObject geosample;
 
     [Header("Toggle Flare Detection")]
-    [SerializeField] GameObject flareCanvas;
+    [SerializeField] GameObject resetRotationButton;
 
     // Start is called before the first frame update
     void Start()
@@ -118,6 +118,12 @@ public class HandMenuController : MonoBehaviour // basic scene managing script
         float newRotationY = newRot.y - currentCameraRot.y + cameraOffset.transform.eulerAngles.y;
         cameraOffset.transform.eulerAngles = new Vector3(cameraOffset.transform.eulerAngles.x, newRotationY, cameraOffset.transform.eulerAngles.z);
     }
+    public void SetUserRotation(float newRot)
+    {
+        Vector3 currentCameraRot = Camera.main.transform.eulerAngles;
+        float newRotationY = newRot - currentCameraRot.y + cameraOffset.transform.eulerAngles.y;
+        cameraOffset.transform.eulerAngles = new Vector3(cameraOffset.transform.eulerAngles.x, newRotationY, cameraOffset.transform.eulerAngles.z);
+    }
 
     public void ToggleTelemetry()
     {
@@ -128,8 +134,8 @@ public class HandMenuController : MonoBehaviour // basic scene managing script
         geosample.SetActive(!geosample.activeSelf);
     }
 
-    public void ToggleFlare()
+    public void ToggleRotationReset()
     {
-        flareCanvas.SetActive(!flareCanvas.activeSelf);
+        resetRotationButton.SetActive(!resetRotationButton.activeSelf);
     }
 }

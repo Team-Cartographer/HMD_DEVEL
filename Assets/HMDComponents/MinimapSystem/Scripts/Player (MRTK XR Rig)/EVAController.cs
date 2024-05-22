@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 
 public class EVAController : MonoBehaviour
 {
+    [SerializeField] GameObject cameraOffset;
     [SerializeField] TMP_Text switchEVAText;
     [SerializeField] ConnectionHandler connectionHandler;
     GatewayConnection gatewayConnection;
@@ -46,7 +47,8 @@ public class EVAController : MonoBehaviour
 
     public void PlacePin()
     {
-        FindAnyObjectByType<HMDPinsSync>().AddHMDPin(Camera.main.transform.position);
+        Vector3 pos = Camera.main.transform.position + cameraOffset.transform.position;
+        FindAnyObjectByType<HMDPinsSync>().AddHMDPin(pos);
     }
     public int GetEVANumber() {  return evaNumber; }
     public void SwitchEVANumber()
