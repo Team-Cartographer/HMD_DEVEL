@@ -23,11 +23,11 @@ public class Compass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float cameraYaw = Camera.main.transform.rotation.eulerAngles.y;
+        /*float cameraYaw = Camera.main.transform.rotation.eulerAngles.y;
 
         if (Time.time - lastTime > 1) 
         {
-            lastTime = Time.time;
+            lastTime = Time.deltaTime;
             string IMUstring = conn.GetIMUJsonString();
 
             // Load IMU data into map
@@ -44,6 +44,6 @@ public class Compass : MonoBehaviour
         //Debug.Log(cameraYaw);
 
         // Rotate image
-        CompassImage.uvRect = new Rect(cameraYaw / 360, 0, 1, 1);
+        CompassImage.uvRect = new Rect(cameraYaw / 360, 0, 1, 1);*/
     }
 }

@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Team Cartographer
-  productName: PolarisEVASystemV0.10
+  productName: PolarisEVASystemV0.11
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -769,7 +769,7 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: PolarisEVASystemV0.10
+  metroPackageName: PolarisEVASystemV0.11
   metroPackageVersion: 1.0.0.0
   metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
@@ -792,10 +792,10 @@ PlayerSettings:
   metroSplashScreenUseBackgroundColor: 0
   platformCapabilities:
     WindowsStoreApps:
+      BackgroundMediaPlayback: True
       Location: True
       Chat: True
       Bluetooth: True
-      InternetClient: True
       PrivateNetworkClientServer: True
       LowLevelDevices: True
       InternetClientServer: True
@@ -807,9 +807,9 @@ PlayerSettings:
       PhoneCall: False
       SystemManagement: True
       SpatialPerception: True
+      InternetClient: True
       Proximity: True
       CodeGeneration: True
-      BackgroundMediaPlayback: True
       Microphone: True
   metroTargetDeviceFamilies: {}
   metroFTAName: 

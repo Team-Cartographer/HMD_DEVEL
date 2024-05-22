@@ -11,6 +11,7 @@ public class ConnectionHandler : MonoBehaviour
     void Start()
     {
         if (PlayerPrefs.GetString("CurrentIP") == "") PlayerPrefs.SetString("CurrentIP", "172.20.3.66");
+        PlayerPrefs.SetString("CurrentIP", "0.0.0.0"); // delete later
         GatewayConnection.ConnectToHost(PlayerPrefs.GetString("CurrentIP"), 3001);
     }
 

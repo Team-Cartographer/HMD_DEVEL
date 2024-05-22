@@ -26,6 +26,9 @@ public class HandMenuController : MonoBehaviour // basic scene managing script
     [Header("Toggle Geosammple Display")]
     [SerializeField] GameObject geosample;
 
+    [Header("Toggle Flare Detection")]
+    [SerializeField] GameObject flareCanvas;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -116,5 +119,10 @@ public class HandMenuController : MonoBehaviour // basic scene managing script
     public void ToggleGeosample()
     {
         geosample.SetActive(!geosample.activeSelf);
+    }
+
+    public void ToggleFlare()
+    {
+        flareCanvas.SetActive(!flareCanvas.activeSelf);
     }
 }
